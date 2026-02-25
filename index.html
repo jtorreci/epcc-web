@@ -95,16 +95,8 @@
         }
 
         .nav-logo .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--gradient-1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: white;
+            height: 38px;
+            width: auto;
         }
 
         .nav-links {
@@ -1059,16 +1051,8 @@
         }
 
         .footer-brand .logo .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--gradient-1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: white;
+            height: 34px;
+            width: auto;
         }
 
         .footer-brand p {
@@ -1342,7 +1326,7 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="#" class="nav-logo">
-                <div class="logo-icon">EP</div>
+                <img class="logo-icon" src="data:image/png;base64,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" alt="EPCC">
                 EPCC
             </a>
             <ul class="nav-links" id="navLinks">
@@ -1797,7 +1781,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo">
-                        <div class="logo-icon">EP</div>
+                        <img class="logo-icon" src="data:image/png;base64,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" alt="EPCC">
                         Escuela Politécnica de Cáceres
                     </div>
                     <p>
