@@ -367,10 +367,11 @@
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-card:nth-child(2) { transform: translateY(20px); }
-        .hero-card:nth-child(2):hover { transform: translateY(16px); }
-        .hero-card:nth-child(3) { transform: translateY(-20px); }
-        .hero-card:nth-child(3):hover { transform: translateY(-24px); }
+        .hero-card:hover {
+            border-color: rgba(0, 201, 167, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
 
         .hero-card-icon {
             width: 48px;
@@ -1325,8 +1326,6 @@
             .features-grid { grid-template-columns: 1fr; }
             .master-cards { grid-template-columns: 1fr; }
             .hero-card-grid { grid-template-columns: 1fr; }
-            .hero-card:nth-child(2), .hero-card:nth-child(3) { transform: none; }
-            .hero-card:nth-child(2):hover, .hero-card:nth-child(3):hover { transform: translateY(-4px); }
             .cta-box { padding: 50px 30px; }
             .movilidad-banner { padding: 40px 24px; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -1401,26 +1400,26 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-card-grid">
-                    <div class="hero-card">
+                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('informatica'),600)">
                         <div class="hero-card-icon" style="background: rgba(0,201,167,0.1);">&#128187;</div>
                         <h4>Informática</h4>
                         <p>IA, ciberseguridad, software y cloud</p>
-                    </div>
-                    <div class="hero-card">
+                    </a>
+                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('teleco'),600)">
                         <div class="hero-card-icon" style="background: rgba(124,58,237,0.1);">&#127911;</div>
                         <h4>Telecomunicación</h4>
                         <p>Sonido, imagen y redes</p>
-                    </div>
-                    <div class="hero-card">
+                    </a>
+                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('civil'),600)">
                         <div class="hero-card-icon" style="background: rgba(0,98,230,0.1);">&#127751;</div>
                         <h4>Ingeniería Civil</h4>
                         <p>Infraestructuras y construcción</p>
-                    </div>
-                    <div class="hero-card">
+                    </a>
+                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('edificacion'),600)">
                         <div class="hero-card-icon" style="background: rgba(245,158,11,0.1);">&#127959;</div>
                         <h4>Edificación</h4>
                         <p>Construcción y eficiencia</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
