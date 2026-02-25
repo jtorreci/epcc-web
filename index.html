@@ -639,128 +639,121 @@
             padding: 120px 0;
         }
 
-        .salidas-layout {
+        .dato-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
         }
 
-        .salidas-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-
-        .salidas-content > p {
-            color: var(--gray);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 36px;
-        }
-
-        .salida-item {
-            display: flex;
-            gap: 16px;
-            padding: 20px;
-            border-radius: var(--radius);
-            transition: all 0.3s;
-            margin-bottom: 8px;
-        }
-
-        .salida-item:hover {
-            background: rgba(20, 25, 56, 0.6);
-        }
-
-        .salida-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            background: rgba(0, 201, 167, 0.1);
-        }
-
-        .salida-item h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 4px;
-        }
-
-        .salida-item p {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-
-        .salidas-visual {
-            position: relative;
-        }
-
-        .salidas-chart {
+        .dato-card {
             background: var(--dark-light);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: var(--radius-lg);
-            padding: 40px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.4s;
         }
 
-        .chart-header {
-            margin-bottom: 30px;
+        .dato-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
         }
 
-        .chart-header h4 {
-            font-size: 1.1rem;
+        .donut-wrap {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+        }
+
+        .donut {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .donut-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.06);
+            stroke-width: 10;
+        }
+
+        .donut-fill {
+            fill: none;
+            stroke: var(--color);
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: calc(2 * 3.14159 * 52);
+            stroke-dashoffset: calc(2 * 3.14159 * 52);
+            transition: stroke-dashoffset 1.5s ease;
+        }
+
+        .donut-fill.animated {
+            stroke-dashoffset: calc(2 * 3.14159 * 52 * (1 - var(--percent) / 100));
+        }
+
+        .donut-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
             color: var(--white);
+        }
+
+        .dato-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .dato-desc {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .dato-highlight {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 14px 12px;
+            margin-bottom: 16px;
+        }
+
+        .dato-big {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
             margin-bottom: 4px;
         }
 
-        .chart-header p {
-            font-size: 0.85rem;
+        .dato-small {
+            font-size: 0.75rem;
             color: var(--gray);
+            line-height: 1.3;
         }
 
-        .chart-bar {
-            margin-bottom: 20px;
-        }
-
-        .chart-bar-header {
+        .dato-extra {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .chart-bar-label {
-            font-size: 0.85rem;
+        .dato-pill {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            font-size: 0.8rem;
             color: var(--light);
-            font-weight: 500;
         }
-
-        .chart-bar-value {
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .chart-bar-track {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 50px;
-            overflow: hidden;
-        }
-
-        .chart-bar-fill {
-            height: 100%;
-            border-radius: 50px;
-            background: var(--gradient-1);
-            transition: width 1.5s ease;
-            width: 0;
-        }
-
-        .chart-bar-fill.animated { width: var(--target-width); }
 
         /* ===== MOVILIDAD ===== */
         .movilidad {
@@ -1283,7 +1276,7 @@
             .hero-visual { margin-top: 40px; }
             .grados-grid { grid-template-columns: 1fr; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .salidas-layout { grid-template-columns: 1fr; }
+            .dato-grid { grid-template-columns: repeat(2, 1fr); }
             .movilidad-banner { grid-template-columns: 1fr; }
             .master-cards { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1308,6 +1301,7 @@
             }
 
             .features-grid { grid-template-columns: 1fr; }
+            .dato-grid { grid-template-columns: 1fr; }
             .master-cards { grid-template-columns: 1fr; }
             .hero-card-grid { grid-template-columns: 1fr; }
             .cta-box { padding: 50px 30px; }
@@ -1579,87 +1573,98 @@
     <!-- ===== SALIDAS PROFESIONALES ===== -->
     <section class="salidas" id="salidas">
         <div class="container">
-            <div class="salidas-layout">
-                <div class="salidas-content reveal">
-                    <div class="section-tag">&#128188; Futuro profesional</div>
-                    <h2>Salidas profesionales con alta demanda</h2>
-                    <p>
-                        Las profesiones técnicas y de ingeniería lideran los rankings de empleabilidad.
-                        Nuestros titulados trabajan en los sectores más dinámicos y con mejor proyección.
-                    </p>
+            <div class="section-header reveal">
+                <div class="section-tag">&#128188; Futuro profesional</div>
+                <h2 class="section-title">Empleabilidad que habla por sí sola</h2>
+                <p class="section-subtitle">
+                    La ingeniería lidera los rankings de inserción laboral en España.
+                    El 92% de los titulados en ingeniería y arquitectura están empleados.
+                    <span style="display:block; font-size:0.8rem; margin-top:8px; opacity:0.7;">Fuente: INE / Fundación BBVA U-Ranking 2025</span>
+                </p>
+            </div>
 
-                    <div class="salida-item">
-                        <div class="salida-icon">&#128187;</div>
-                        <div>
-                            <h4>Tecnología y desarrollo</h4>
-                            <p>IA, ciberseguridad, desarrollo de software, administración de sistemas, ingeniería de datos</p>
-                        </div>
+            <div class="dato-grid">
+                <!-- INFORMATICA -->
+                <div class="dato-card reveal">
+                    <div class="donut-wrap">
+                        <svg class="donut" viewBox="0 0 120 120">
+                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
+                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 91; --color: #00C9A7;"/>
+                        </svg>
+                        <div class="donut-label">91%</div>
                     </div>
-                    <div class="salida-item">
-                        <div class="salida-icon">&#127911;</div>
-                        <div>
-                            <h4>Telecomunicaciones y audiovisual</h4>
-                            <p>Ingeniería acústica, sistemas de comunicación, producción audiovisual, consultoría tecnológica</p>
-                        </div>
+                    <h4>Informática</h4>
+                    <p class="dato-desc">Tasa de empleo a los 4 años de graduarse</p>
+                    <div class="dato-highlight">
+                        <span class="dato-big">120.000+</span>
+                        <span class="dato-small">vacantes tech sin cubrir en España</span>
                     </div>
-                    <div class="salida-item">
-                        <div class="salida-icon">&#127751;</div>
-                        <div>
-                            <h4>Infraestructuras y obra civil</h4>
-                            <p>Consultorías, constructoras, administraciones públicas, dirección de obras</p>
-                        </div>
-                    </div>
-                    <div class="salida-item">
-                        <div class="salida-icon">&#127959;</div>
-                        <div>
-                            <h4>Edificación y construcción</h4>
-                            <p>Empresas promotoras, ejercicio libre de la profesión, peritaciones, consultoría técnica</p>
-                        </div>
+                    <div class="dato-extra">
+                        <div class="dato-pill">&#128176; ~37.000 &euro;/año</div>
+                        <div class="dato-pill">&#128200; +15% contratación anual</div>
                     </div>
                 </div>
 
-                <div class="salidas-visual reveal">
-                    <div class="salidas-chart">
-                        <div class="chart-header">
-                            <h4>Demanda por sector</h4>
-                            <p>Perspectivas laborales de nuestros titulados</p>
-                        </div>
-                        <div class="chart-bar">
-                            <div class="chart-bar-header">
-                                <span class="chart-bar-label">Informática y tecnología</span>
-                                <span class="chart-bar-value">Muy alta</span>
-                            </div>
-                            <div class="chart-bar-track">
-                                <div class="chart-bar-fill" style="--target-width: 95%;"></div>
-                            </div>
-                        </div>
-                        <div class="chart-bar">
-                            <div class="chart-bar-header">
-                                <span class="chart-bar-label">Telecomunicaciones</span>
-                                <span class="chart-bar-value">Muy alta</span>
-                            </div>
-                            <div class="chart-bar-track">
-                                <div class="chart-bar-fill" style="--target-width: 90%;"></div>
-                            </div>
-                        </div>
-                        <div class="chart-bar">
-                            <div class="chart-bar-header">
-                                <span class="chart-bar-label">Ingeniería Civil</span>
-                                <span class="chart-bar-value">Alta</span>
-                            </div>
-                            <div class="chart-bar-track">
-                                <div class="chart-bar-fill" style="--target-width: 80%;"></div>
-                            </div>
-                        </div>
-                        <div class="chart-bar">
-                            <div class="chart-bar-header">
-                                <span class="chart-bar-label">Edificación</span>
-                                <span class="chart-bar-value">Alta</span>
-                            </div>
-                            <div class="chart-bar-track">
-                                <div class="chart-bar-fill" style="--target-width: 82%;"></div>
-                            </div>
-                        </div>
+                <!-- TELECO -->
+                <div class="dato-card reveal">
+                    <div class="donut-wrap">
+                        <svg class="donut" viewBox="0 0 120 120">
+                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
+                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 87; --color: #7C3AED;"/>
+                        </svg>
+                        <div class="donut-label">87%</div>
+                    </div>
+                    <h4>Telecomunicación</h4>
+                    <p class="dato-desc">Tasa de empleo a los 4 años de graduarse</p>
+                    <div class="dato-highlight">
+                        <span class="dato-big">Top 5</span>
+                        <span class="dato-small">entre las carreras con más empleo (INE)</span>
+                    </div>
+                    <div class="dato-extra">
+                        <div class="dato-pill">&#128176; ~35.300 &euro;/año</div>
+                        <div class="dato-pill">&#127758; Sello europeo EUR-ACE</div>
+                    </div>
+                </div>
+
+                <!-- CIVIL -->
+                <div class="dato-card reveal">
+                    <div class="donut-wrap">
+                        <svg class="donut" viewBox="0 0 120 120">
+                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
+                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 81; --color: #0062E6;"/>
+                        </svg>
+                        <div class="donut-label">81%</div>
+                    </div>
+                    <h4>Ingeniería Civil</h4>
+                    <p class="dato-desc">Tasa de empleo a los 4 años de graduarse</p>
+                    <div class="dato-highlight">
+                        <span class="dato-big">700.000</span>
+                        <span class="dato-small">profesionales que necesita el sector construcción</span>
+                    </div>
+                    <div class="dato-extra">
+                        <div class="dato-pill">&#128176; ~34.500 &euro;/año</div>
+                        <div class="dato-pill">&#128196; 72% contratos indefinidos</div>
+                    </div>
+                </div>
+
+                <!-- EDIFICACION -->
+                <div class="dato-card reveal">
+                    <div class="donut-wrap">
+                        <svg class="donut" viewBox="0 0 120 120">
+                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
+                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 92; --color: #F59E0B;"/>
+                        </svg>
+                        <div class="donut-label">92%</div>
+                    </div>
+                    <h4>Edificación</h4>
+                    <p class="dato-desc">Tasa de empleo en ingeniería y arquitectura</p>
+                    <div class="dato-highlight">
+                        <span class="dato-big">140.000 M&euro;</span>
+                        <span class="dato-small">de fondos europeos impulsan el sector</span>
+                    </div>
+                    <div class="dato-extra">
+                        <div class="dato-pill">&#128176; ~45.000 &euro;/año</div>
+                        <div class="dato-pill">&#9888;&#65039; 55% del sector se jubila pronto</div>
                     </div>
                 </div>
             </div>
@@ -1867,17 +1872,17 @@
         }, { threshold: 0.1 });
         reveals.forEach(el => revealObserver.observe(el));
 
-        // ===== CHART ANIMATION =====
-        const chartBars = document.querySelectorAll('.chart-bar-fill');
-        const chartObserver = new IntersectionObserver((entries) => {
+        // ===== DONUT ANIMATION =====
+        const donuts = document.querySelectorAll('.donut-fill');
+        const donutObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
-                    chartObserver.unobserve(entry.target);
+                    donutObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
-        chartBars.forEach(bar => chartObserver.observe(bar));
+        }, { threshold: 0.3 });
+        donuts.forEach(d => donutObserver.observe(d));
 
         // ===== MODAL DATA =====
         const modalData = {
