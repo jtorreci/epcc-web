@@ -19,18 +19,123 @@
   <script src="assets/js/parallax.js" defer></script>
 </head>
 <body>
+  <svg class="sprite" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <!-- Inlined line-art sprite (source: assets/img/lineart.svg) so drawings also render from file:// -->
+    <symbol id="bridge" viewBox="0 0 800 600">
+    <path d="M20 420H780M20 432H780" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M20 432V540M780 432V540" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0 540H800M80 562h44M300 572h64M600 560h52M700 576h36" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M238 540L246 120H254L262 540" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M558 540L566 120H574L582 540" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M250 196L210 420M250 196L290 420M250 182L180 420M250 182L320 420M250 168L150 420M250 168L350 420M250 154L120 420M250 154L380 420M250 140L90 420M250 140L410 420M570 196L530 420M570 196L610 420M570 182L500 420M570 182L640 420M570 168L470 420M570 168L670 420M570 154L440 420M570 154L700 420M570 140L410 420M570 140L730 420" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="dam" viewBox="0 0 800 600">
+    <path d="M0 180L140 230L240 470H560L660 230L800 180" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0 236L118 272L198 470M800 236L682 272L602 470" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M235 250Q400 300 565 250M235 262Q400 312 565 262M262 470Q400 500 538 470" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M276.2 272.9L296.5 476.6M317.5 280.8L331 481.2M358.8 285.4L365.5 484.1M400 287L400 485M441.2 285.4L434.5 484.1M482.5 280.8L469 481.2M523.8 272.9L503.5 476.6" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M300 222h80M420 214h64M350 198h52M470 232h40" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M384 496Q394 556 362 600M418 496Q430 556 452 600" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M470 516h52v30h-52Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="road" viewBox="0 0 800 600">
+    <path d="M0 250H800" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M0 250Q150 196 300 250M470 250Q620 186 800 238" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M60 600L392 250M740 600L408 250" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M400 590L400 545M400 505L400 470M400 442L400 415M400 396L400 376M400 362L400 346M400 336L400 324M400 316L400 306M400 300L400 292" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M714.2 558V426h-24.6M623.8 467V374h-17.4M554.2 397V334h-11.8M498.5 341V302h-7.3" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="circuit" viewBox="0 0 800 600">
+    <path d="M40 120H260L300 160H514" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M40 200H200L240 240H420L460 280H614" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M80 600V420L120 380H334" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M760 0V200L720 240H606" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M800 520H600L560 480V366" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M300 600V500L340 460H474" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M640 600V560L680 520H800" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M180 0V90" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M514 160a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M614 280a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M334 380a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M594 240a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M554 360a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M474 460a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M174 96a6 6 0 1 0 12 0a6 6 0 1 0 -12 0" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M400 340h80v60h-80ZM412 340V328M412 400V412M428 340V328M428 400V412M444 340V328M444 400V412M460 340V328M460 400V412" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M50 60a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M730 560a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M256 120a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M236 240a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="chip" viewBox="0 0 800 600">
+    <path d="M250 150h300v300h-300Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M330 230h140v140h-140Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M365 230V370M400 230V370M435 230V370M330 265H470M330 300H470M330 335H470" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M270 150V120M270 450V480M250 300H220M550 300H580M298.9 150V120M298.9 450V480M250 328.9H220M550 328.9H580M327.8 150V120M327.8 450V480M250 357.8H220M550 357.8H580M356.7 150V120M356.7 450V480M250 386.7H220M550 386.7H580M385.6 150V120M385.6 450V480M250 415.6H220M550 415.6H580M414.4 150V120M414.4 450V480M250 444.4H220M550 444.4H580M443.3 150V120M443.3 450V480M250 473.3H220M550 473.3H580M472.2 150V120M472.2 450V480M250 502.2H220M550 502.2H580M501.1 150V120M501.1 450V480M250 531.1H220M550 531.1H580M530 150V120M530 450V480M250 560H220M550 560H580" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M298.9 120V90L258.9 50H40M356.7 120V0M580 357.8H640L680 317.8H800M443.3 480V540L483.3 580H760M220 502.2H160L120 542.2V600" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M265 172a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="network" viewBox="0 0 800 600">
+    <path d="M131.6 136.8L286.5 93.7M312.7 96L459.1 164.9M481.4 166.4L646.6 114.2M126.4 150.2L212.6 288.1M305.8 102.7L400.8 310M465.8 181.2L417.7 309.4M233.8 302.2L388.3 326.6M431.7 326.6L586.2 302.2M604.2 286.6L655.8 123.4M609.9 309.9L710.1 410.1M212.9 312.1L126.1 459.7M131.9 471.7L316.1 498M336 487.3L400.6 349.9M343.9 498.7L528.1 481.1M543.8 468.6L595.6 313.3M551.4 476.2L706.7 424.4M478.5 178.5L590.1 290.1" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M112 140a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M290 90a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M462 170a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M650 110a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M210 300a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M392 330a18 18 0 1 0 36 0a18 18 0 1 0 -36 0M590 300a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M112 470a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M320 500a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M532 480a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M710 420a10 10 0 1 0 20 0a10 10 0 1 0 -20 0" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M403 330a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="antenna" viewBox="0 0 800 600">
+    <path d="M330 560L392 120M470 560L408 120M400 120V40" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M220 560H580" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M338.5 500L461.5 500M346.9 440L453.1 440M355.4 380L444.6 380M363.8 320L436.2 320M372.3 260L427.7 260M380.7 200L419.3 200M386.4 160L413.6 160M392 120L408 120" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M330 560L461.5 500M470 560L338.5 500M338.5 500L453.1 440M461.5 500L346.9 440M346.9 440L444.6 380M453.1 440L355.4 380M355.4 380L436.2 320M444.6 380L363.8 320M363.8 320L427.7 260M436.2 320L372.3 260M372.3 260L419.3 200M427.7 260L380.7 200M380.7 200L413.6 160M419.3 200L386.4 160M386.4 160L408 120M413.6 160L392 120" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M372 214Q342 236 372 258M372 236H356M428 276Q458 298 428 320M428 298H444" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M392 150h-10v34h10M408 150h10v34h-10" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M426.8 29.1A34 34 0 0 1 426.8 70.9M373.2 29.1A34 34 0 0 0 373.2 70.9M450.4 10.6A64 64 0 0 1 450.4 89.4M349.6 10.6A64 64 0 0 0 349.6 89.4M474.1 -7.9A94 94 0 0 1 474.1 107.9M325.9 -7.9A94 94 0 0 0 325.9 107.9M497.7 -26.3A124 124 0 0 1 497.7 126.3M302.3 -26.3A124 124 0 0 0 302.3 126.3" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="waveform" viewBox="0 0 800 600">
+    <path d="M40 300L46 300.5L52 302.2L58 304.9L64 308.1L70 311.3L76 313.6L82 314.2L88 312.3L94 307.7L100 300.5L106 291.1L112 280.8L118 270.9L124 262.8L130 258L136 257.5L142 261.8L148 270.7L154 283.4L160 298.3L166 313.9L172 328L178 339.1L184 345.8L190 347.5L196 344.2L202 336.6L208 325.9L214 313.8L220 301.8L226 291.4L232 283.6L238 279L244 277.5L250 278.7L256 282L262 286.3L268 291L274 295.4L280 299.3L286 302.5L292 305.2L298 307.7L304 310L310 312L316 313.5L322 313.9L328 312.5L334 308.7L340 302.2L346 292.9L352 281.6L358 269.2L364 257.6L370 248.6L376 244.2L382 245.9L388 254.7L394 270.4L400 292.1L406 317.7L412 344.4L418 368.9L424 388L430 399L436 400L442 390.5L448 371.2L454 344.1L460 312.3L466 279.4L472 249.3L478 225.2L484 209.8L490 204.3L496 208.8L502 222.2L508 242.1L514 265.8L520 290.2L526 312.3L532 330L538 341.8L544 347.3L550 346.8L556 341.4L562 332.7L568 322.5L574 312.4L580 303.5L586 296.7L592 292.3L598 290.1L604 289.7L610 290.6L616 292.1L622 293.8L628 295.6L634 297.4L640 299.1L646 300.9L652 302.8L658 304.8L664 306.7L670 308.2L676 309L682 308.9L688 307.6L694 305.2L700 302.1L706 298.5L712 295.1L718 292.5L724 291L730 290.9L736 292.1L742 294.2L748 296.7L754 298.8L760 300" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M40 300L46 300.9L52 301.6L58 301.9L64 301.3L70 299.9L76 297.5L82 294.3L88 290.8L94 287.6L100 285.2L106 284.3L112 285.3L118 288.4L124 293.5L130 300.1L136 307.5L142 314.9L148 321.1L154 325.5L160 327.2L166 326.1L172 322.3L178 316.2L184 308.5L190 300.3L196 292.6L202 286.3L208 281.9L214 279.9L220 280.3L226 282.7L232 286.5L238 291L244 295.6L250 299.7L256 302.8L262 305L268 306.1L274 306.3L280 306L286 305.4L292 304.5L298 303.4L304 302.1L310 300.3L316 298L322 295.1L328 291.8L334 288.4L340 285.5L346 283.7L352 283.6L358 285.9L364 290.8L370 298.3L376 307.7L382 318.3L388 328.6L394 337.3L400 343L406 344.5L412 341.1L418 332.7L424 320.1L430 304.3L436 287.1L442 270.5L448 256.5L454 246.7L460 242.3L466 243.9L472 251.2L478 263.2L484 278.5L490 295L496 310.9L502 324.5L508 334.3L514 339.6L520 340.3L526 336.8L532 330.1L538 321.3L544 311.8L550 302.9L556 295.4L562 290.1L568 287.1L574 286.2L580 287.1L586 289.3L592 292L598 294.8L604 297.3L610 299.3L616 300.8L622 301.8L628 302.4L634 302.8L640 303.1L646 303.1L652 303L658 302.6L664 301.8L670 300.7L676 299.2L682 297.5L688 295.9L694 294.6L700 293.9L706 293.8L712 294.5L718 295.8L724 297.5L730 299.2L736 300.7L742 301.6L748 301.7L754 301.1L760 300" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M40 300H760" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M70 440h34v60h-34ZM104 440L150 404V536L104 500" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M179.9 453.3A26 26 0 0 1 179.9 486.7M196.8 439.1A48 48 0 0 1 196.8 500.9M213.6 425A70 70 0 0 1 213.6 515" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M570 130a80 80 0 1 0 160 0a80 80 0 1 0 -160 0M558 130a92 92 0 1 0 184 0a92 92 0 1 0 -184 0M679 137.8L657.8 159L628.8 151.2L621 122.2L642.2 101L671.2 108.8L679 137.8" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M679 137.8L650 206M657.8 159L584.2 168M628.8 151.2L584.2 92M621 122.2L650 54M642.2 101L715.8 92M671.2 108.8L715.8 168" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="section" viewBox="0 0 800 600">
+    <path d="M20 500H780" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M140 410H660M140 420H660M140 320H660M140 330H660M140 230H660M140 240H660M140 140H660M140 150H660" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M140 140V122H660V140" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M154 500V420M166 500V420M154 410V330M166 410V330M154 320V240M166 320V240M154 230V150M166 230V150M314 500V420M326 500V420M314 410V330M326 410V330M314 320V240M326 320V240M314 230V150M326 230V150M474 500V420M486 500V420M474 410V330M486 410V330M474 320V240M486 320V240M474 230V150M486 230V150M634 500V420M646 500V420M634 410V330M646 410V330M634 320V240M646 320V240M634 230V150M646 230V150" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M130 500h60v36h-60ZM290 500h60v36h-60ZM450 500h60v36h-60ZM610 500h60v36h-60Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M500 500L500 490L515 490L515 480L530 480L530 470L545 470L545 460L560 460L560 450L575 450L575 440L590 440L590 430L605 430L605 420L620 420M500 410L500 400L515 400L515 390L530 390L530 380L545 380L545 370L560 370L560 360L575 360L575 350L590 350L590 340L605 340L605 330L620 330M500 320L500 310L515 310L515 300L530 300L530 290L545 290L545 280L560 280L560 270L575 270L575 260L590 260L590 250L605 250L605 240L620 240M500 230L500 220L515 220L515 210L530 210L530 200L545 200L545 190L560 190L560 180L575 180L575 170L590 170L590 160L605 160L605 150L620 150" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M90 140V500M82 508L98 492M84 500H130M82 418L98 402M84 410H130M82 328L98 312M84 320H130M82 238L98 222M84 230H130M82 148L98 132M84 140H130" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M40 506L26 522M68 506L54 522M96 506L82 522M124 506L110 522M152 506L138 522M180 506L166 522M208 506L194 522M236 506L222 522M264 506L250 522M292 506L278 522M320 506L306 522M348 506L334 522M376 506L362 522M404 506L390 522M432 506L418 522M460 506L446 522M488 506L474 522M516 506L502 522M544 506L530 522M572 506L558 522M600 506L586 522M628 506L614 522M656 506L642 522M684 506L670 522M712 506L698 522M740 506L726 522M768 506L754 522" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="frame" viewBox="0 0 800 600">
+    <path d="M60 540H780" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M180 46V540M300 46V540M420 46V540M540 46V540" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M166 30a14 14 0 1 0 28 0a14 14 0 1 0 -28 0M286 30a14 14 0 1 0 28 0a14 14 0 1 0 -28 0M406 30a14 14 0 1 0 28 0a14 14 0 1 0 -28 0M526 30a14 14 0 1 0 28 0a14 14 0 1 0 -28 0" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M150 520H570M150 430H570M150 340H570M150 250H570M150 160H570" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M576 520l12 -12h-24ZM576 430l12 -12h-24ZM576 340l12 -12h-24ZM576 250l12 -12h-24ZM576 160l12 -12h-24Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M202 450h76v50h-76ZM202 360h76v50h-76ZM202 270h76v50h-76ZM202 180h76v50h-76ZM322 450h76v50h-76ZM322 360h76v50h-76ZM322 270h76v50h-76ZM322 180h76v50h-76ZM442 450h76v50h-76ZM442 360h76v50h-76ZM442 270h76v50h-76ZM442 180h76v50h-76Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M680 540V64M700 540V64M680 540L700 516M700 516L680 492M680 492L700 468M700 468L680 444M680 444L700 420M700 420L680 396M680 396L700 372M700 372L680 348M680 348L700 324M700 324L680 300M680 300L700 276M700 276L680 252M680 252L700 228M700 228L680 204M680 204L700 180M700 180L680 156M680 156L700 132M700 132L680 108M680 108L700 84M700 84L680 60" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M420 80H780M420 92H700M690 40L420 80M690 40L780 80M680 64H700V40H680Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M610 92V210M598 210h24M610 210q0 14 -10 14" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  <symbol id="plan" viewBox="0 0 800 600">
+    <path d="M120 100h560v400h-560Z" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M132 112H668V488H600M540 488H132V112" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M120 500H540M600 500H680" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M132 296H300M350 296H668M132 304H300M350 304H668" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M396 112V200M404 112V200M396 250V296M404 250V296" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M300 300V250A50 50 0 0 1 350 300" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M404 200H454A50 50 0 0 1 404 250" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M540 494V444A60 60 0 0 1 600 494" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M200 106H320M480 106H600M126 380V460M674 160V240" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M120 540H680M120 532V548M680 532V548M400 532V548M80 100V500M72 100H88M72 500H88" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path d="M708 70a22 22 0 1 0 44 0a22 22 0 1 0 -44 0M730 92V40l-8 14M730 40l8 14" pathLength="1" vector-effect="non-scaling-stroke"/>
+  </symbol>
+  </svg>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
   <div class="layers" aria-hidden="true">
     <div class="layer layer-grid"></div>
     <div class="layer layer-art">
-      <svg class="scene" style="--i: 0" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#bridge"/></svg>
-      <svg class="scene" style="--i: 1" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#circuit"/></svg>
-      <svg class="scene" style="--i: 2" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#section"/></svg>
-      <svg class="scene" style="--i: 3" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#antenna"/></svg>
-      <svg class="scene" style="--i: 4" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#dam"/></svg>
-      <svg class="scene" style="--i: 5" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#chip"/></svg>
-      <svg class="scene" style="--i: 6" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#frame"/></svg>
+      <svg class="scene" style="--i: 0" viewBox="0 0 800 600"><use href="#bridge"/></svg>
+      <svg class="scene" style="--i: 1" viewBox="0 0 800 600"><use href="#circuit"/></svg>
+      <svg class="scene" style="--i: 2" viewBox="0 0 800 600"><use href="#section"/></svg>
+      <svg class="scene" style="--i: 3" viewBox="0 0 800 600"><use href="#antenna"/></svg>
+      <svg class="scene" style="--i: 4" viewBox="0 0 800 600"><use href="#dam"/></svg>
+      <svg class="scene" style="--i: 5" viewBox="0 0 800 600"><use href="#chip"/></svg>
+      <svg class="scene" style="--i: 6" viewBox="0 0 800 600"><use href="#frame"/></svg>
     </div>
   </div>
 
