@@ -42,6 +42,10 @@ ask-on-risk. Forecast: ~1500+ authored lines (generated static pages) — chain 
 - [x] T4 Degree pages (4) with masters — route: delegated writer — commit f9bab87
 - [ ] T5 Structural verification (links, accents, reduced-motion, mobile width) — route: delegated verifier
 
+- [x] T7 Charcoal drafting theme as default (light via ?tema=claro) — route: inline (token-only CSS change) — 3b8ae13
+- [ ] T8 Rework parallax into perceptible triple scroll with intermediate line-art between sections — route: delegated writer (CSS + JS + 5 pages)
+  - Reason (client feedback 2026-10-08): "no hay triple scroll ni imágenes intermedias". Root cause: grid drifts 12vh and art 20vh over whole page (perceived as fixed); single fixed drawing crossfades behind content; CSS-only path (Chromium) — Firefox uses untested fallback; prefers-reduced-motion disables everything.
+
 ## Acceptance criteria
 - Each degree reachable at its own URL; portal links to all.
 - No outdated Informática/Teleco data remains.
