@@ -13,7 +13,7 @@ Modernize the EPCC promotional site (reached via printed QR) into a flat, low-in
 - Pages: `index.html` (portal), `informatica.html`, `teleco.html`, `civil.html`, `edificacion.html`.
 - Updated degree data:
   - Informática: ONE degree, four menciones from 3rd year: Ingeniería de Software, Ingeniería de Computadores, Ciberseguridad, Ciencia de Datos.
-  - Telecomunicación: degree with two menciones: Sistemas de Telecomunicación, Imagen y Sonido (previously Sonido e Imagen only).
+  - Telecomunicación: Grado en Ingeniería de Tecnologías de Telecomunicación with two menciones: Sonido e Imagen, Sistemas de Telecomunicación (client-confirmed).
 - Masters integrated in each degree page.
 
 ## Constraints
@@ -33,9 +33,11 @@ ask-on-risk. Forecast: ~1500+ authored lines (generated static pages) — chain 
   - Edificación (1626): 240 ECTS, Arquitecto Técnico, 40 plazas, no menciones.
   - Double degrees ADE + Informática (feet.unex.es 1492/1493) still offered, 6 years, 13 plazas each.
   - Masters: MU Ing. Informática (1650, 90 ECTS), MU Ing. Telecomunicación (1649, 90 ECTS, habilitante), MU Ing. Caminos, Canales y Puertos (1641, 120 ECTS, habilitante), MU BIM (1645, 60 ECTS, semipresencial), MU Investigación en Ingeniería y Arquitectura (1646, 60 ECTS).
-  - EUR-ACE seal NOT verified for any degree -> removed from copy.
+  - ~~EUR-ACE seal NOT verified -> removed~~ SUPERSEDED by client correction: EUR-ACE seal is held and attributed to the Telecomunicación degree (teleco page + portal quality point only).
+  - Client correction: EPCC holds ANECA institutional accreditation (acreditación institucional de ANECA) as a centre -> portal quality point, facts strip and every page footer.
+  - Client correction: modality — MU Ing. Informática, MU Ing. Telecomunicación, MU BIM and MU Investigación en Ingeniería y Arquitectura (MUI) are SEMIPRESENCIAL (highlighted badge); MU Ing. Caminos, Canales y Puertos is presencial (plain label).
   - Contact: Avda. Universidad s/n, 10003 Cáceres; 927 257 195; secretaria_epcc@unex.es
-- [ ] T2 Design system + shared assets (`assets/css/site.css`, line-art SVGs, parallax) — route: delegated writer (2+ non-trivial files)
+- [x] T2 Design system + shared assets (`assets/css/site.css`, line-art SVGs, parallax) — route: delegated writer (2+ non-trivial files) — commit ff58ef7
 - [ ] T3 Portal `index.html` rewrite — route: delegated writer
 - [ ] T4 Degree pages (4) with masters — route: delegated writer
 - [ ] T5 Structural verification (links, accents, reduced-motion, mobile width) — route: delegated verifier

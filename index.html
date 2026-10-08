@@ -1,1985 +1,372 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EPCC | Escuela Politécnica de Cáceres - Universidad de Extremadura</title>
-    <meta name="description" content="Estudia ingeniería en la Escuela Politécnica de Cáceres. Grados en Informática, Telecomunicación, Ingeniería Civil y Edificación.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* ===== RESET & BASE ===== */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --primary: #0062E6;
-            --primary-dark: #0047AB;
-            --accent: #00C9A7;
-            --accent-light: #00E6BE;
-            --dark: #0A0E27;
-            --dark-light: #141938;
-            --gray: #8892B0;
-            --light: #CCD6F6;
-            --white: #FFFFFF;
-            --gradient-1: linear-gradient(135deg, #0062E6 0%, #00C9A7 100%);
-            --gradient-2: linear-gradient(135deg, #0A0E27 0%, #1A1F4E 100%);
-            --gradient-3: linear-gradient(135deg, #00C9A7 0%, #0062E6 100%);
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.25);
-            --radius: 16px;
-            --radius-lg: 24px;
-        }
-
-        html { scroll-behavior: smooth; font-size: 16px; }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
-
-        a { text-decoration: none; color: inherit; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-        /* ===== ANIMATED BACKGROUND ===== */
-        .bg-grid {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image:
-                linear-gradient(rgba(0, 98, 230, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 98, 230, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 16px 0;
-            transition: all 0.4s ease;
-            background: transparent;
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 14, 39, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 10px 0;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .navbar .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--white);
-        }
-
-        .nav-logo .logo-icon {
-            height: 38px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--gray);
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover { color: var(--white); }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-1);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after { width: 100%; }
-
-        .nav-cta {
-            padding: 10px 24px;
-            background: var(--gradient-1);
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: white !important;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 98, 230, 0.4);
-        }
-
-        .nav-cta::after { display: none !important; }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 8px;
-        }
-
-        .menu-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--white);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            overflow: hidden;
-        }
-
-        .hero-glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            pointer-events: none;
-        }
-
-        .hero-glow-1 {
-            top: -100px;
-            right: -200px;
-            background: var(--primary);
-        }
-
-        .hero-glow-2 {
-            bottom: -150px;
-            left: -200px;
-            background: var(--accent);
-        }
-
-        .hero .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(0, 201, 167, 0.1);
-            border: 1px solid rgba(0, 201, 167, 0.2);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 24px;
-            animation: fadeInUp 0.6s ease;
-        }
-
-        .hero-badge .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.5); }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--white);
-            margin-bottom: 24px;
-            animation: fadeInUp 0.6s ease 0.1s both;
-        }
-
-        .hero h1 .gradient-text {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 1.15rem;
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 40px;
-            max-width: 520px;
-            animation: fadeInUp 0.6s ease 0.2s both;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.6s ease 0.3s both;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gradient-1);
-            color: white;
-            box-shadow: 0 4px 20px rgba(0, 98, 230, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 98, 230, 0.5);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid rgba(136, 146, 176, 0.3);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 50px;
-            animation: fadeInUp 0.6s ease 0.4s both;
-        }
-
-        .stat { text-align: left; }
-
-        .stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .stat-number .accent { color: var(--accent); }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-top: 4px;
-        }
-
-        /* Hero Visual */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 1s ease 0.4s both;
-        }
-
-        .hero-card-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            width: 100%;
-            max-width: 480px;
-        }
-
-        .hero-card {
-            background: rgba(20, 25, 56, 0.8);
-            border: 1px solid rgba(0, 98, 230, 0.15);
-            border-radius: var(--radius);
-            padding: 24px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            cursor: default;
-        }
-
-        .hero-card:hover {
-            border-color: rgba(0, 201, 167, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-card:hover {
-            border-color: rgba(0, 201, 167, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-        }
-
-        .hero-card h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 6px;
-        }
-
-        .hero-card p {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        /* ===== SECTION COMMON ===== */
-        section { position: relative; z-index: 1; }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(0, 98, 230, 0.1);
-            border: 1px solid rgba(0, 98, 230, 0.2);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ===== GRADOS / DEGREES ===== */
-        .grados {
-            padding: 120px 0;
-        }
-
-        .grados-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .grado-card {
-            position: relative;
-            background: var(--dark-light);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            overflow: hidden;
-            transition: all 0.5s ease;
-            cursor: pointer;
-        }
-
-        .grado-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--card-accent, var(--gradient-1));
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .grado-card:hover::before { opacity: 1; }
-
-        .grado-card:hover {
-            border-color: rgba(255, 255, 255, 0.12);
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .grado-card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 24px;
-            position: relative;
-        }
-
-        .grado-card-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .grado-card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .grado-card .description {
-            font-size: 0.95rem;
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .grado-card .meta {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-
-        .grado-card .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-
-        .grado-card .meta-item strong {
-            color: var(--light);
-        }
-
-        .grado-card .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
-        }
-
-        .skill-tag {
-            padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            color: var(--gray);
-            transition: all 0.3s;
-        }
-
-        .grado-card:hover .skill-tag {
-            border-color: rgba(0, 201, 167, 0.2);
-            color: var(--light);
-        }
-
-        .grado-card .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-        }
-
-        .grado-card .card-link .arrow {
-            transition: transform 0.3s;
-        }
-
-        .grado-card:hover .card-link .arrow {
-            transform: translateX(6px);
-        }
-
-        /* Card color themes */
-        .grado-card.informatica { --card-accent: linear-gradient(135deg, #00C9A7, #0062E6); }
-        .grado-card.informatica .grado-card-icon { background: rgba(0, 201, 167, 0.1); color: #00C9A7; }
-        .grado-card.informatica .grado-card-tag { background: rgba(0, 201, 167, 0.1); color: #00C9A7; }
-        .grado-card.informatica .card-link { color: #00C9A7; }
-
-        .grado-card.teleco { --card-accent: linear-gradient(135deg, #7C3AED, #EC4899); }
-        .grado-card.teleco .grado-card-icon { background: rgba(124, 58, 237, 0.1); color: #7C3AED; }
-        .grado-card.teleco .grado-card-tag { background: rgba(124, 58, 237, 0.1); color: #7C3AED; }
-        .grado-card.teleco .card-link { color: #7C3AED; }
-
-        .grado-card.civil { --card-accent: linear-gradient(135deg, #0062E6, #00B4D8); }
-        .grado-card.civil .grado-card-icon { background: rgba(0, 98, 230, 0.1); color: #0062E6; }
-        .grado-card.civil .grado-card-tag { background: rgba(0, 98, 230, 0.1); color: #0062E6; }
-        .grado-card.civil .card-link { color: #0062E6; }
-
-        .grado-card.edificacion { --card-accent: linear-gradient(135deg, #F59E0B, #EF4444); }
-        .grado-card.edificacion .grado-card-icon { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
-        .grado-card.edificacion .grado-card-tag { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
-        .grado-card.edificacion .card-link { color: #F59E0B; }
-
-        /* ===== POR QUE EPCC ===== */
-        .por-que {
-            padding: 120px 0;
-            background: linear-gradient(180deg, transparent, rgba(0, 98, 230, 0.03), transparent);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .feature-card {
-            background: rgba(20, 25, 56, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius);
-            padding: 36px;
-            text-align: center;
-            transition: all 0.4s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(0, 201, 167, 0.2);
-            transform: translateY(-4px);
-            background: rgba(20, 25, 56, 0.8);
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
-            background: rgba(0, 98, 230, 0.1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        /* ===== SALIDAS PROFESIONALES ===== */
-        .salidas {
-            padding: 120px 0;
-        }
-
-        .dato-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .dato-card {
-            background: var(--dark-light);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-lg);
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.4s;
-        }
-
-        .dato-card:hover {
-            border-color: rgba(255, 255, 255, 0.12);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-        }
-
-        .donut-wrap {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 20px;
-        }
-
-        .donut {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-
-        .donut-bg {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.06);
-            stroke-width: 10;
-        }
-
-        .donut-fill {
-            fill: none;
-            stroke: var(--color);
-            stroke-width: 10;
-            stroke-linecap: round;
-            stroke-dasharray: calc(2 * 3.14159 * 52);
-            stroke-dashoffset: calc(2 * 3.14159 * 52);
-            transition: stroke-dashoffset 1.5s ease;
-        }
-
-        .donut-fill.animated {
-            stroke-dashoffset: calc(2 * 3.14159 * 52 * (1 - var(--percent) / 100));
-        }
-
-        .donut-label {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .dato-card h4 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 6px;
-        }
-
-        .dato-desc {
-            font-size: 0.8rem;
-            color: var(--gray);
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .dato-highlight {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 14px 12px;
-            margin-bottom: 16px;
-        }
-
-        .dato-big {
-            display: block;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 4px;
-        }
-
-        .dato-small {
-            font-size: 0.75rem;
-            color: var(--gray);
-            line-height: 1.3;
-        }
-
-        .dato-extra {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .dato-pill {
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            font-size: 0.8rem;
-            color: var(--light);
-        }
-
-        /* ===== MOVILIDAD ===== */
-        .movilidad {
-            padding: 120px 0;
-            background: linear-gradient(180deg, transparent, rgba(0, 201, 167, 0.03), transparent);
-        }
-
-        .movilidad-banner {
-            background: var(--dark-light);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-lg);
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .movilidad-banner::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 201, 167, 0.06), transparent 70%);
-            pointer-events: none;
-        }
-
-        .movilidad-content { position: relative; z-index: 1; }
-
-        .movilidad-content h2 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .movilidad-content p {
-            color: var(--gray);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-
-        .movilidad-programs {
-            display: flex;
-            gap: 16px;
-        }
-
-        .program-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .program-badge:hover {
-            border-color: rgba(0, 201, 167, 0.3);
-            background: rgba(0, 201, 167, 0.05);
-        }
-
-        .program-badge .icon {
-            font-size: 1.5rem;
-        }
-
-        .program-badge .name {
-            font-weight: 700;
-            color: var(--white);
-            font-size: 1rem;
-        }
-
-        .program-badge .desc {
-            font-size: 0.75rem;
-            color: var(--gray);
-        }
-
-        .movilidad-map {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .map-dots {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            padding: 20px;
-        }
-
-        .map-dot {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: 12px;
-            background: rgba(0, 98, 230, 0.08);
-            border: 1px solid rgba(0, 98, 230, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            transition: all 0.3s;
-            cursor: default;
-        }
-
-        .map-dot:hover {
-            background: rgba(0, 98, 230, 0.15);
-            border-color: rgba(0, 98, 230, 0.3);
-            transform: scale(1.1);
-        }
-
-        .map-dot span {
-            font-size: 0.65rem;
-            color: var(--gray);
-            display: block;
-            margin-top: 2px;
-        }
-
-        /* ===== MASTERS ===== */
-        .masteres {
-            padding: 120px 0;
-        }
-
-        .master-cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .master-card {
-            background: var(--dark-light);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius);
-            padding: 32px;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .master-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-3);
-            transform: scaleX(0);
-            transition: transform 0.4s;
-        }
-
-        .master-card:hover::before { transform: scaleX(1); }
-
-        .master-card:hover {
-            border-color: rgba(0, 201, 167, 0.2);
-            transform: translateY(-4px);
-        }
-
-        .master-card .icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-
-        .master-card h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .master-card p {
-            font-size: 0.85rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .master-card .from {
-            display: inline-block;
-            margin-top: 16px;
-            font-size: 0.75rem;
-            color: var(--accent);
-            font-weight: 600;
-            padding: 4px 10px;
-            background: rgba(0, 201, 167, 0.1);
-            border-radius: 50px;
-        }
-
-        /* ===== CTA SECTION ===== */
-        .cta-section {
-            padding: 120px 0;
-        }
-
-        .cta-box {
-            background: var(--gradient-1);
-            border-radius: var(--radius-lg);
-            padding: 80px 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08), transparent 50%);
-            pointer-events: none;
-        }
-
-        .cta-box h2 {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 800;
-            color: white;
-            margin-bottom: 16px;
-            position: relative;
-        }
-
-        .cta-box p {
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 550px;
-            margin: 0 auto 40px;
-            position: relative;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--primary-dark);
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-        }
-
-        .btn-ghost {
-            background: rgba(255,255,255,0.15);
-            color: white;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-3px);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 60px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .footer-brand .logo .logo-icon {
-            height: 34px;
-            width: auto;
-        }
-
-        .footer-brand p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 12px;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            color: var(--gray);
-        }
-
-        .footer-social a:hover {
-            background: rgba(0, 98, 230, 0.15);
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .footer-col h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col li { margin-bottom: 10px; }
-
-        .footer-col a {
-            font-size: 0.9rem;
-            color: var(--gray);
-            transition: color 0.3s;
-        }
-
-        .footer-col a:hover { color: var(--accent); }
-
-        .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .footer-bottom p {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-
-        /* ===== SCROLL ANIMATIONS ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* ===== DETAIL MODAL ===== */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(10, 14, 39, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal {
-            background: var(--dark-light);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-lg);
-            max-width: 700px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 48px;
-            position: relative;
-            animation: modalIn 0.4s ease;
-        }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.95) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--gray);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-        }
-
-        .modal h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .modal .modal-subtitle {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        .modal .modal-desc {
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 28px;
-        }
-
-        .modal h3 {
-            font-size: 1.1rem;
-            color: var(--white);
-            margin-bottom: 12px;
-            margin-top: 28px;
-        }
-
-        .modal ul {
-            list-style: none;
-            margin-bottom: 16px;
-        }
-
-        .modal ul li {
-            padding: 8px 0;
-            padding-left: 20px;
-            position: relative;
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        .modal ul li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 16px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-        }
-
-        .modal .master-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: rgba(0, 201, 167, 0.1);
-            border: 1px solid rgba(0, 201, 167, 0.2);
-            border-radius: 12px;
-            color: var(--accent);
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .modal .master-link:hover {
-            background: rgba(0, 201, 167, 0.15);
-            transform: translateX(4px);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .hero .container { grid-template-columns: 1fr; text-align: center; }
-            .hero-description { margin-left: auto; margin-right: auto; }
-            .hero-actions { justify-content: center; }
-            .hero-stats { justify-content: center; }
-            .hero-visual { margin-top: 40px; }
-            .grados-grid { grid-template-columns: 1fr; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .dato-grid { grid-template-columns: repeat(2, 1fr); }
-            .movilidad-banner { grid-template-columns: 1fr; }
-            .master-cards { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-toggle { display: flex; }
-
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(10, 14, 39, 0.98);
-                backdrop-filter: blur(20px);
-                padding: 24px;
-                gap: 20px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            }
-
-            .features-grid { grid-template-columns: 1fr; }
-            .dato-grid { grid-template-columns: 1fr; }
-            .master-cards { grid-template-columns: 1fr; }
-            .hero-card-grid { grid-template-columns: 1fr; }
-            .cta-box { padding: 50px 30px; }
-            .movilidad-banner { padding: 40px 24px; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .modal { padding: 32px 24px; }
-            .map-dots { grid-template-columns: repeat(3, 1fr); }
-            .movilidad-programs { flex-direction: column; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escuela Politécnica de Cáceres · Grados y másteres</title>
+  <meta name="description" content="Escuela Politécnica de Cáceres (Universidad de Extremadura): grados en Ingeniería Informática, Telecomunicación, Ingeniería Civil y Edificación, y cinco másteres oficiales.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Escuela Politécnica de Cáceres · Grados y másteres">
+  <meta property="og:description" content="Cuatro grados de ingeniería y edificación y cinco másteres oficiales en la Universidad de Extremadura, Cáceres.">
+  <meta property="og:image" content="assets/img/logo-epcc-color.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="theme-color" content="#f4f1ea">
+  <link rel="icon" type="image/png" href="assets/img/logo-epcc-color.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/parallax.js" defer></script>
 </head>
 <body>
-    <div class="bg-grid"></div>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#" class="nav-logo">
-                <img class="logo-icon" src="data:image/png;base64,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" alt="EPCC">
-                EPCC
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#grados">Grados</a></li>
-                <li><a href="#por-que">Por qué EPCC</a></li>
-                <li><a href="#salidas">Salidas</a></li>
-                <li><a href="#movilidad">Movilidad</a></li>
-                <li><a href="#masteres">Másteres</a></li>
-                <li><a href="#contacto" class="nav-cta">Contacto</a></li>
-            </ul>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
-        <div class="hero-glow hero-glow-1"></div>
-        <div class="hero-glow hero-glow-2"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="pulse"></span>
-                    Haz la PAU y preinscríbete
-                </div>
-                <h1>
-                    Construye el futuro<br>
-                    con <span class="gradient-text">tecnología e ingeniería</span>
-                </h1>
-                <p class="hero-description">
-                    En la Escuela Politécnica de Cáceres formamos a los profesionales
-                    que diseñan, construyen y transforman el mundo. Cuatro grados con
-                    alta empleabilidad y proyección internacional.
-                </p>
-                <div class="hero-actions">
-                    <a href="#grados" class="btn btn-primary">Explorar grados &#8595;</a>
-
-                    <a href="#contacto" class="btn btn-outline">Solicitar info</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">4 <span class="accent">+1</span></div>
-                        <div class="stat-label">Grados + Doble grado</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">240</div>
-                        <div class="stat-label">Créditos ECTS</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">4<span class="accent"> másteres</span></div>
-                        <div class="stat-label">Para seguir creciendo</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-card-grid">
-                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('informatica'),600)">
-                        <div class="hero-card-icon" style="background: rgba(0,201,167,0.1);">&#128187;</div>
-                        <h4>Informática</h4>
-                        <p>IA, ciberseguridad, software y cloud</p>
-                    </a>
-                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('teleco'),600)">
-                        <div class="hero-card-icon" style="background: rgba(124,58,237,0.1);">&#127911;</div>
-                        <h4>Telecomunicación</h4>
-                        <p>Sonido, imagen y redes</p>
-                    </a>
-                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('civil'),600)">
-                        <div class="hero-card-icon" style="background: rgba(0,98,230,0.1);">&#127751;</div>
-                        <h4>Ingeniería Civil</h4>
-                        <p>Infraestructuras y construcción</p>
-                    </a>
-                    <a class="hero-card" href="#grados" onclick="setTimeout(()=>openModal('edificacion'),600)">
-                        <div class="hero-card-icon" style="background: rgba(245,158,11,0.1);">&#127959;</div>
-                        <h4>Edificación</h4>
-                        <p>Construcción y eficiencia</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== GRADOS ===== -->
-    <section class="grados" id="grados">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">&#127891; Oferta académica</div>
-                <h2 class="section-title">Elige tu camino</h2>
-                <p class="section-subtitle">
-                    Cuatro grados de ingeniería con enfoque práctico, alta empleabilidad
-                    y posibilidad de movilidad internacional
-                </p>
-            </div>
-
-            <div class="grados-grid">
-                <!-- INFORMATICA -->
-                <div class="grado-card informática reveal" onclick="openModal('informatica')">
-                    <div class="grado-card-icon">&#128187;</div>
-                    <div class="grado-card-tag">2 especialidades + Doble grado con ADE</div>
-                    <h3>Grados en Ingeniería Informática</h3>
-                    <p class="description">
-                        Prepárate para diseñar, desarrollar y gestionar sistemas informáticos
-                        eficientes y seguros. Domina la inteligencia artificial, la computación en la nube
-                        y las tecnologías emergentes que están transformando el mundo.
-                    </p>
-                    <div class="meta">
-                        <div class="meta-item">&#128197; <strong>4 años</strong></div>
-                        <div class="meta-item">&#127891; <strong>240 ECTS</strong></div>
-                    </div>
-                    <div class="skills">
-                        <span class="skill-tag">Inteligencia Artificial</span>
-                        <span class="skill-tag">Ciberseguridad</span>
-                        <span class="skill-tag">Desarrollo Software</span>
-                        <span class="skill-tag">Redes</span>
-                        <span class="skill-tag">Machine Learning</span>
-                    </div>
-                    <div class="card-link">
-                        Ver detalle completo <span class="arrow">&#8594;</span>
-                    </div>
-                </div>
-
-                <!-- TELECO -->
-                <div class="grado-card teleco reveal" onclick="openModal('teleco')">
-                    <div class="grado-card-icon">&#127911;</div>
-                    <div class="grado-card-tag">Sello europeo EUR-ACE</div>
-                    <h3>Ingeniería de Telecomunicación</h3>
-                    <p class="description">
-                        Lidera proyectos en las áreas de sonido, imagen y telecomunicaciones.
-                        Formación avalada con el sello de excelencia europea EUR-ACE.
-                        Dos menciones: Sistemas de Telecomunicación e Imagen y Sonido.
-                    </p>
-                    <div class="meta">
-                        <div class="meta-item">&#128197; <strong>4 años</strong></div>
-                        <div class="meta-item">&#127891; <strong>240 ECTS</strong></div>
-                    </div>
-                    <div class="skills">
-                        <span class="skill-tag">Audio y Vídeo</span>
-                        <span class="skill-tag">Acústica</span>
-                        <span class="skill-tag">Fibra Óptica</span>
-                        <span class="skill-tag">Señal Digital</span>
-                        <span class="skill-tag">5G</span>
-                    </div>
-                    <div class="card-link">
-                        Ver detalle completo <span class="arrow">&#8594;</span>
-                    </div>
-                </div>
-
-                <!-- CIVIL -->
-                <div class="grado-card civil reveal" onclick="openModal('civil')">
-                    <div class="grado-card-icon">&#127751;</div>
-                    <div class="grado-card-tag">Ingeniería clásica con visión moderna</div>
-                    <h3>Ingeniería Civil</h3>
-                    <p class="description">
-                        Formación para ejercer como ingeniero/a en el diseño, mantenimiento y
-                        construcción de infraestructuras clave: carreteras, puentes, presas
-                        y redes de abastecimiento. Tecnología BIM incluida.
-                    </p>
-                    <div class="meta">
-                        <div class="meta-item">&#128197; <strong>4 años</strong></div>
-                        <div class="meta-item">&#127891; <strong>240 ECTS</strong></div>
-                    </div>
-                    <div class="skills">
-                        <span class="skill-tag">Estructuras</span>
-                        <span class="skill-tag">Hidráulica</span>
-                        <span class="skill-tag">Geotecnia</span>
-                        <span class="skill-tag">BIM 3D</span>
-                        <span class="skill-tag">Transporte</span>
-                    </div>
-                    <div class="card-link">
-                        Ver detalle completo <span class="arrow">&#8594;</span>
-                    </div>
-                </div>
-
-                <!-- EDIFICACION -->
-                <div class="grado-card edificación reveal" onclick="openModal('edificacion')">
-                    <div class="grado-card-icon">&#127959;</div>
-                    <div class="grado-card-tag">Altamente demandado</div>
-                    <h3>Edificación</h3>
-                    <p class="description">
-                        Fórmate como experto/a en edificación con enfoque práctico
-                        y acceso a laboratorios especializados. Preparación para
-                        gestionar proyectos complejos garantizando eficiencia, calidad y seguridad.
-                    </p>
-                    <div class="meta">
-                        <div class="meta-item">&#128197; <strong>4 años</strong></div>
-                        <div class="meta-item">&#127891; <strong>240 ECTS</strong></div>
-                    </div>
-                    <div class="skills">
-                        <span class="skill-tag">Construcción</span>
-                        <span class="skill-tag">Presupuestos</span>
-                        <span class="skill-tag">Eficiencia Energética</span>
-                        <span class="skill-tag">Normativa</span>
-                        <span class="skill-tag">Peritaciones</span>
-                    </div>
-                    <div class="card-link">
-                        Ver detalle completo <span class="arrow">&#8594;</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== POR QUE EPCC ===== -->
-    <section class="por-que" id="por-que">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">&#9889; Ventajas</div>
-                <h2 class="section-title">Por qué estudiar en la EPCC</h2>
-                <p class="section-subtitle">
-                    Formación con enfoque práctico, proyección internacional y una
-                    preparación técnica sólida para tu carrera profesional
-                </p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon">&#128640;</div>
-                    <h3>Alta empleabilidad</h3>
-                    <p>Nuestros titulados son altamente demandados en el mercado profesional, con excelentes perspectivas laborales</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">&#127758;</div>
-                    <h3>Movilidad internacional</h3>
-                    <p>Programas Erasmus+ y SICUE para estudiar en universidades europeas y españolas</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">&#128300;</div>
-                    <h3>Enfoque práctico</h3>
-                    <p>Laboratorios especializados y colaboración con empresas del sector para una formación real</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">&#127942;</div>
-                    <h3>Sellos de calidad</h3>
-                    <p>Titulaciones avaladas con certificaciones de calidad europea como el sello EUR-ACE</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">&#128101;</div>
-                    <h3>Grupos reducidos</h3>
-                    <p>Trato cercano con el profesorado y atención personalizada gracias a grupos de tamaño reducido</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">&#128218;</div>
-                    <h3>Continuidad académica</h3>
-                    <p>Acceso directo a másteres oficiales en la propia EPCC para seguir especializándote</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SALIDAS PROFESIONALES ===== -->
-    <section class="salidas" id="salidas">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">&#128188; Futuro profesional</div>
-                <h2 class="section-title">Empleabilidad que habla por sí sola</h2>
-                <p class="section-subtitle">
-                    La ingeniería lidera los rankings de inserción laboral en España.
-                    El 92% de los titulados en ingeniería y arquitectura están empleados.
-                    <span style="display:block; font-size:0.8rem; margin-top:8px; opacity:0.7;">Fuente: INE / Fundación BBVA U-Ranking 2025</span>
-                </p>
-            </div>
-
-            <div class="dato-grid">
-                <!-- INFORMATICA -->
-                <div class="dato-card reveal">
-                    <div class="donut-wrap">
-                        <svg class="donut" viewBox="0 0 120 120">
-                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
-                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 91; --color: #00C9A7;"/>
-                        </svg>
-                        <div class="donut-label">91%</div>
-                    </div>
-                    <h4>Informática</h4>
-                    <p class="dato-desc">Tasa de empleo a los 4 años de graduarse</p>
-                    <div class="dato-highlight">
-                        <span class="dato-big">120.000+</span>
-                        <span class="dato-small">vacantes tech sin cubrir en España</span>
-                    </div>
-                    <div class="dato-extra">
-                        <div class="dato-pill">&#128176; ~37.000 &euro;/año</div>
-                        <div class="dato-pill">&#128200; +15% contratación anual</div>
-                    </div>
-                </div>
-
-                <!-- TELECO -->
-                <div class="dato-card reveal">
-                    <div class="donut-wrap">
-                        <svg class="donut" viewBox="0 0 120 120">
-                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
-                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 87; --color: #7C3AED;"/>
-                        </svg>
-                        <div class="donut-label">87%</div>
-                    </div>
-                    <h4>Telecomunicación</h4>
-                    <p class="dato-desc">Tasa de empleo a los 4 años de graduarse</p>
-                    <div class="dato-highlight">
-                        <span class="dato-big">Top 5</span>
-                        <span class="dato-small">entre las carreras con más empleo (INE)</span>
-                    </div>
-                    <div class="dato-extra">
-                        <div class="dato-pill">&#128176; ~35.300 &euro;/año</div>
-                        <div class="dato-pill">&#127758; Sello europeo EUR-ACE</div>
-                    </div>
-                </div>
-
-                <!-- CIVIL -->
-                <div class="dato-card reveal">
-                    <div class="donut-wrap">
-                        <svg class="donut" viewBox="0 0 120 120">
-                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
-                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 81; --color: #0062E6;"/>
-                        </svg>
-                        <div class="donut-label">81%</div>
-                    </div>
-                    <h4>Ingeniería Civil</h4>
-                    <p class="dato-desc">Tasa de empleo a los 4 años de graduarse</p>
-                    <div class="dato-highlight">
-                        <span class="dato-big">700.000</span>
-                        <span class="dato-small">profesionales que necesita el sector construcción</span>
-                    </div>
-                    <div class="dato-extra">
-                        <div class="dato-pill">&#128176; ~34.500 &euro;/año</div>
-                        <div class="dato-pill">&#128196; 72% contratos indefinidos</div>
-                    </div>
-                </div>
-
-                <!-- EDIFICACION -->
-                <div class="dato-card reveal">
-                    <div class="donut-wrap">
-                        <svg class="donut" viewBox="0 0 120 120">
-                            <circle class="donut-bg" cx="60" cy="60" r="52"/>
-                            <circle class="donut-fill" cx="60" cy="60" r="52" style="--percent: 92; --color: #F59E0B;"/>
-                        </svg>
-                        <div class="donut-label">92%</div>
-                    </div>
-                    <h4>Edificación</h4>
-                    <p class="dato-desc">Tasa de empleo en ingeniería y arquitectura</p>
-                    <div class="dato-highlight">
-                        <span class="dato-big">140.000 M&euro;</span>
-                        <span class="dato-small">de fondos europeos impulsan el sector</span>
-                    </div>
-                    <div class="dato-extra">
-                        <div class="dato-pill">&#128176; ~45.000 &euro;/año</div>
-                        <div class="dato-pill">&#9888;&#65039; 55% del sector se jubila pronto</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== MOVILIDAD ===== -->
-    <section class="movilidad" id="movilidad">
-        <div class="container">
-            <div class="movilidad-banner reveal">
-                <div class="movilidad-content">
-                    <div class="section-tag">&#9992;&#65039; Internacional</div>
-                    <h2>Estudia en Europa y España</h2>
-                    <p>
-                        Los estudiantes de la EPCC tienen oportunidades de movilidad
-                        internacional mediante programas como Erasmus+ y nacionales como SICUE,
-                        permitiendo realizar estudios en otras universidades europeas y españolas.
-                    </p>
-                    <div class="movilidad-programs">
-                        <div class="program-badge">
-                            <span class="icon">&#127466;&#127482;</span>
-                            <div>
-                                <div class="name">Erasmus+</div>
-                                <div class="desc">Universidades europeas</div>
-                            </div>
-                        </div>
-                        <div class="program-badge">
-                            <span class="icon">&#127466;&#127480;</span>
-                            <div>
-                                <div class="name">SICUE</div>
-                                <div class="desc">Universidades españolas</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="movilidad-map">
-                    <div class="map-dots">
-                        <div class="map-dot">&#127467;&#127479;</div>
-                        <div class="map-dot">&#127465;&#127466;</div>
-                        <div class="map-dot">&#127470;&#127481;</div>
-                        <div class="map-dot">&#127477;&#127481;</div>
-                        <div class="map-dot">&#127475;&#127473;</div>
-                        <div class="map-dot">&#127463;&#127466;</div>
-                        <div class="map-dot">&#127477;&#127473;</div>
-                        <div class="map-dot">&#127464;&#127487;</div>
-                        <div class="map-dot">&#127462;&#127481;</div>
-                        <div class="map-dot">&#127470;&#127466;</div>
-                        <div class="map-dot">&#127468;&#127463;</div>
-                        <div class="map-dot">&#127480;&#127466;</div>
-                        <div class="map-dot">&#127465;&#127472;</div>
-                        <div class="map-dot">&#127467;&#127470;</div>
-                        <div class="map-dot">&#127479;&#127476;</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== MASTERES ===== -->
-    <section class="masteres" id="masteres">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">&#127941; Postgrado</div>
-                <h2 class="section-title">Másteres oficiales</h2>
-                <p class="section-subtitle">
-                    Al finalizar tu grado, sigue creciendo con nuestros másteres oficiales en la EPCC
-                </p>
-            </div>
-
-            <div class="master-cards">
-                <div class="master-card reveal">
-                    <div class="icon">&#128187;</div>
-                    <h4>Máster Universitario en Ingeniería Informática</h4>
-                    <p>Especialización avanzada en informática con acceso a investigación y puestos directivos en tecnología</p>
-                    <span class="from">Desde Ing. Informática</span>
-                </div>
-                <div class="master-card reveal">
-                    <div class="icon">&#128225;</div>
-                    <h4>Máster Universitario en Ingeniería de Telecomunicación</h4>
-                    <p>Formación avanzada para liderar proyectos de telecomunicaciones a nivel profesional</p>
-                    <span class="from">Desde Ing. Telecomunicación</span>
-                </div>
-                <div class="master-card reveal">
-                    <div class="icon">&#128739;</div>
-                    <h4>Máster en Ingeniería de Caminos, Canales y Puertos</h4>
-                    <p>La titulación histórica de ingeniería civil con las mayores atribuciones profesionales</p>
-                    <span class="from">Desde Ing. Civil</span>
-                </div>
-                <div class="master-card reveal">
-                    <div class="icon">&#127970;</div>
-                    <h4>Máster en Metodología BIM</h4>
-                    <p>Modelización de la información de la construcción, la tecnología que lidera el sector</p>
-                    <span class="from">Desde Civil / Edificación</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CTA ===== -->
-    <section class="cta-section" id="contacto">
-        <div class="container">
-            <div class="cta-box reveal">
-                <h2>Tu futuro empieza aquí</h2>
-                <p>
-                    Contacta con nosotros para resolver cualquier duda sobre nuestros grados,
-                    admisión o vida universitaria en la EPCC
-                </p>
-                <div class="cta-buttons">
-                    <a href="mailto:secretaria_epcc@unex.es" class="btn btn-white">&#9993; secretaria_epcc@unex.es</a>
-                    <a href="tel:927257195" class="btn btn-ghost">&#128222; 927 257 195</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <img class="logo-icon" src="data:image/png;base64,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" alt="EPCC">
-                        Escuela Politécnica de Cáceres
-                    </div>
-                    <p>
-                        Universidad de Extremadura<br>
-                        Avd. Universidad s/n 10003 Cáceres
-                    </p>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/epcc_unex/" aria-label="Instagram" title="Instagram">&#128247;</a>
-                        <a href="https://www.linkedin.com/school/epcc-unex/" aria-label="LinkedIn" title="LinkedIn">&#128188;</a>
-                        <a href="https://twitter.com/epcc_unex" aria-label="X / Twitter" title="X / Twitter">&#120143;</a>
-                        <a href="https://www.facebook.com/epcc.unex/" aria-label="Facebook" title="Facebook">&#102;</a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Grados</h4>
-                    <ul>
-                        <li><a href="#" onclick="openModal('informatica'); return false;">Ingeniería Informática</a></li>
-                        <li><a href="#" onclick="openModal('teleco'); return false;">Ing. Telecomunicación</a></li>
-                        <li><a href="#" onclick="openModal('civil'); return false;">Ingeniería Civil</a></li>
-                        <li><a href="#" onclick="openModal('edificacion'); return false;">Edificación</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Másteres</h4>
-                    <ul>
-                        <li><a href="#masteres">Ing. Informática</a></li>
-                        <li><a href="#masteres">Ing. Telecomunicación</a></li>
-                        <li><a href="#masteres">Caminos y Puertos</a></li>
-                        <li><a href="#masteres">Metodología BIM</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><a href="mailto:secretaria_epcc@unex.es">Email</a></li>
-                        <li><a href="tel:927257195">927 257 195</a></li>
-                        <li><a href="https://www.epcc.unex.es" target="_blank" rel="noopener">www.epcc.unex.es</a></li>
-                        <li><a href="#">@epcc_unex</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Escuela Politécnica de Cáceres - Universidad de Extremadura</p>
-                <p>Avd. Universidad s/n, 10003 Cáceres</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ===== MODALS ===== -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-        <div class="modal" id="modalContent" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div id="modalBody"></div>
-        </div>
+  <div class="layers" aria-hidden="true">
+    <div class="layer layer-grid"></div>
+    <div class="layer layer-art">
+      <svg class="scene" style="--from: 0%; --to: 24%" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#bridge"/></svg>
+      <svg class="scene" style="--from: 14%; --to: 40%" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#circuit"/></svg>
+      <svg class="scene" style="--from: 32%; --to: 60%" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#section"/></svg>
+      <svg class="scene" style="--from: 52%; --to: 80%" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#antenna"/></svg>
+      <svg class="scene" style="--from: 72%; --to: 100%" viewBox="0 0 800 600"><use href="assets/img/lineart.svg#network"/></svg>
     </div>
+  </div>
 
-    <script>
-        // ===== NAVBAR SCROLL =====
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+  <div class="page">
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="index.html">
+          <img class="logo-light" src="assets/img/logo-epcc-color.png" width="40" height="35" alt="Logotipo de la Escuela Politécnica de Cáceres">
+          <img class="logo-dark" src="assets/img/logo-epcc-white.png" width="40" height="35" alt="Logotipo de la Escuela Politécnica de Cáceres">
+          <span>EPCC<small>Universidad de Extremadura</small></span>
+        </a>
+        <nav class="nav" aria-label="Principal">
+          <ul>
+            <li><a href="#grados">Grados</a></li>
+            <li><a href="#por-que">Por qué EPCC</a></li>
+            <li><a href="#empleo">Empleo</a></li>
+            <li><a href="#movilidad">Movilidad</a></li>
+            <li><a href="#masteres">Másteres</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-        // ===== MOBILE MENU =====
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => navLinks.classList.remove('active'));
-        });
+    <main id="contenido">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap">
+          <p class="hero-badge">Haz la PAU y preinscríbete</p>
+          <p class="eyebrow">Escuela Politécnica de Cáceres</p>
+          <h1 id="hero-title">Construye el futuro con tecnología e ingeniería</h1>
+          <p class="lead">
+            En la Escuela Politécnica de Cáceres formamos a los profesionales que diseñan,
+            construyen y transforman el mundo. Cuatro grados con alta empleabilidad y
+            proyección internacional, y cinco másteres oficiales para seguir creciendo.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#grados">
+              Ver los grados
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+            </a>
+            <a class="btn" href="#contacto">Admisión y contacto</a>
+          </div>
+          <dl class="facts">
+            <div><dt>Grados</dt><dd>4</dd></div>
+            <div><dt>Créditos por grado</dt><dd>240 ECTS</dd></div>
+            <div><dt>Másteres oficiales</dt><dd>5</dd></div>
+            <div><dt>Acreditación institucional</dt><dd>ANECA</dd></div>
+          </dl>
+        </div>
+      </section>
 
-        // ===== SCROLL REVEAL =====
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        reveals.forEach(el => revealObserver.observe(el));
+      <!-- Degrees -->
+      <section class="section" id="grados" aria-labelledby="grados-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">01 · Oferta académica</p>
+            <h2 id="grados-title">Elige tu camino</h2>
+            <p class="lead">Cuatro grados de ingeniería y edificación con enfoque práctico, alta empleabilidad y posibilidad de movilidad internacional. Cada uno tiene su propia página con menciones, materias, salidas y máster.</p>
+          </div>
 
-        // ===== DONUT ANIMATION =====
-        const donuts = document.querySelectorAll('.donut-fill');
-        const donutObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    donutObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-        donuts.forEach(d => donutObserver.observe(d));
+          <div class="grid grid-4">
+            <a class="card degree-card" href="informatica.html">
+              <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>
+              <span class="card-index">Grado 01</span>
+              <h3>Ingeniería Informática</h3>
+              <p>Nuevo plan desde el curso 2026/27 con cuatro menciones a partir de tercero: Ingeniería del Software, Ingeniería de Computadores, Ciberseguridad y Ciencia de Datos.</p>
+              <p class="meta">4 años · 240 ECTS · 160 plazas</p>
+              <span class="go">Ver el grado <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+            <a class="card degree-card" href="teleco.html">
+              <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10v11M8.5 21L12 10l3.5 11M7.5 6.5a6 6 0 0 0 0 7M16.5 6.5a6 6 0 0 1 0 7M4.5 3.5a10 10 0 0 0 0 13M19.5 3.5a10 10 0 0 1 0 13"/><circle cx="12" cy="10" r="1.5"/></svg>
+              <span class="card-index">Grado 02</span>
+              <h3>Ingeniería de Tecnologías de Telecomunicación</h3>
+              <p>Nuevo plan desde el curso 2026/27 con dos menciones: Sistemas de Telecomunicación y Sonido e Imagen. Sello europeo de calidad EUR-ACE.</p>
+              <p class="meta">4 años · 240 ECTS · 60 plazas</p>
+              <span class="go">Ver el grado <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+            <a class="card degree-card" href="civil.html">
+              <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h20M7 16V5M17 16V5M7 6l-5 10M7 6l5 10M17 6l-5 10M17 6l5 10M7 16v4M17 16v4"/></svg>
+              <span class="card-index">Grado 03</span>
+              <h3>Ingeniería Civil</h3>
+              <p>Diseño, construcción y mantenimiento de carreteras, puentes, presas y redes de abastecimiento. Habilita para la profesión de Ingeniero Técnico de Obras Públicas.</p>
+              <p class="meta">4 años · 240 ECTS · 3 menciones</p>
+              <span class="go">Ver el grado <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+            <a class="card degree-card" href="edificacion.html">
+              <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14M4 21h16M9 21v-5h6v5M8 9h2M14 9h2M8 13h2M14 13h2"/></svg>
+              <span class="card-index">Grado 04</span>
+              <h3>Edificación</h3>
+              <p>Formación práctica para dirigir y gestionar obras con eficiencia energética, calidad constructiva y seguridad. Habilita para la profesión de Arquitecto Técnico.</p>
+              <p class="meta">4 años · 240 ECTS · 40 plazas</p>
+              <span class="go">Ver el grado <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
 
-        // ===== MODAL DATA =====
-        const modalData = {
-            informatica: {
-                icon: '&#128187;',
-                title: 'Grados en Ingeniería Informática',
-                subtitle: '4 años | 240 ECTS | 2 especialidades | Doble grado con ADE',
-                desc: 'Los grados en Ingeniería Informática de la EPCC te preparan para diseñar, desarrollar y gestionar sistemas informáticos eficientes y seguros. En un mundo digitalizado, los ingenieros informáticos son clave para el avance de tecnologías emergentes como la inteligencia artificial y la computación en la nube.',
-                options: '<h3>Dos opciones de grado</h3><ul><li>Grado en Ingeniería Informática en Ingeniería de Computadores</li><li>Grado en Ingeniería Informática en Ingeniería del Software</li></ul><p style="color: var(--accent); font-weight: 600; margin-top: 8px;">+ Posibilidad de doble grado con ADE</p>',
-                materias: ['Arquitectura de Computadores', 'Biometría y Seguridad de Sistemas', 'Computación', 'Desarrollo de Programas', 'Ingeniería de Software', 'Inteligencia Artificial y Sistemas Inteligentes', 'Redes y Comunicaciones', 'Sistemas Operativos'],
-                competencias: ['Diseñar y mantener sistemas informáticos seguros y eficientes', 'Dominio de hardware, software, redes y tecnologías avanzadas', 'Dirección de proyectos informáticos garantizando calidad', 'Conocimiento de legislación y estándares relacionados con la informática'],
-                salidas: ['Administración de redes y sistemas', 'Ciberseguridad', 'Consultoría tecnológica', 'Diseño y desarrollo de hardware y software', 'Ingeniería de datos', 'Inteligencia artificial y machine learning', 'Investigación en computación cuántica y arquitecturas avanzadas'],
-                master: 'Máster Universitario en Ingeniería Informática'
-            },
-            teleco: {
-                icon: '&#127911;',
-                title: 'Ingeniería de Telecomunicación',
-                subtitle: '4 años | 240 ECTS | Sello EUR-ACE | 2 menciones',
-                desc: 'Este grado te capacitará para liderar proyectos en las áreas de sonido, imagen y telecomunicaciones, permitiéndote afrontar con éxito los desafíos tecnológicos actuales y futuros. Formación avalada por el sello de excelencia europea EUR-ACE, equiparándote a los estándares de la Unión Europea.',
-                options: '<h3>Dos menciones disponibles</h3><ul><li>Sistemas de Telecomunicación</li><li>Imagen y Sonido</li></ul>',
-                materias: ['Acondicionamiento Acústico', 'Equipos de Audio y Video', 'Tratamiento Digital de Señales', 'Dispositivos Electrónicos', 'Redes y Servicios de Telecomunicaciones', 'Comunicaciones Inalámbricas y por Fibra Óptica', 'Gestión de Proyectos'],
-                competencias: ['Diseñar y desarrollar sistemas de telecomunicaciones que integren sonido e imagen de alta calidad', 'Dominio de tecnologías avanzadas en acústica, procesamiento de señales y sistemas audiovisuales', 'Gestionar proyectos en entornos tecnológicos multidisciplinares adaptando soluciones innovadoras'],
-                salidas: ['Ingeniería acústica', 'Sistemas de comunicación audiovisual', 'Producción y grabación de señales de audio y video', 'Consultoría tecnológica', 'Desarrollo de proyectos en el área de las telecomunicaciones'],
-                master: 'Máster Universitario en Ingeniería de Telecomunicación'
-            },
-            civil: {
-                icon: '&#127751;',
-                title: 'Ingeniería Civil',
-                subtitle: '4 años | 240 ECTS',
-                desc: 'El Grado en Ingeniería Civil te prepara para ejercer como ingeniero/a en el diseño, mantenimiento y construcción de infraestructuras clave como carreteras, puentes, presas y redes de abastecimiento. Estudiar en la EPCC te ofrece formación con enfoque práctico y proyección internacional.',
-                options: '',
-                materias: ['Estructuras', 'Dibujo', 'Mecánica', 'Hidráulica e Hidrología', 'Geotecnia y Cimientos', 'Infraestructuras de Transporte', 'Topografía en Obra Civil', 'Edificación y Prefabricación', 'BIM 3D'],
-                competencias: ['Diseño y construcción de infraestructuras civiles (carreteras, puentes, túneles)', 'Planificación y gestión de recursos hidráulicos', 'Aplicación de normativas técnicas y medioambientales', 'Capacidades en topografía, geotecnia, materiales y estructuras'],
-                salidas: ['Consultorías: redacción de proyectos y asistencia técnica en la dirección de obra', 'Constructoras: gerencia y ejecución de obras', 'Administraciones públicas: dirección de obras de ingeniería civil', 'Docencia e investigación: universidades y centros de investigación'],
-                master: 'Máster en Ingeniería de Caminos, Canales y Puertos / Máster en Metodología BIM'
-            },
-            edificacion: {
-                icon: '&#127959;',
-                title: 'Edificación',
-                subtitle: '4 años | 240 ECTS',
-                desc: 'La EPCC es el lugar ideal para formarte como experto en edificación. Destaca por su enfoque práctico, con acceso a laboratorios especializados. Te prepara para gestionar proyectos complejos, garantizando la eficiencia energética, la calidad constructiva y la seguridad en las obras.',
-                options: '',
-                materias: ['Construcción', 'Fundamentos de Materiales', 'Estructuras', 'Instalaciones', 'Cálculo para la Edificación', 'Economía y Empresa', 'Construcción y Control de Calidad', 'Peritaciones y Gestión Urbanística', 'Normativa Técnica'],
-                competencias: ['Dirección de proyectos de construcción', 'Control de calidad y eficiencia energética', 'Seguridad laboral en el sector de la construcción', 'Gestión de costes y presupuestos'],
-                salidas: ['Empresas constructoras y promotoras', 'Administración pública', 'Ejercicio libre de la profesión', 'Consultoría técnica'],
-                master: 'Máster en Metodología para la Modelización de la Información de la Construcción (BIM)'
-            }
-        };
+          <div class="callout" style="margin-top: 1.5rem">
+            <h3>Dobles grados ADE + Ingeniería Informática</h3>
+            <p>Además, se ofertan dos dobles grados que combinan Administración y Dirección de Empresas con Ingeniería Informática: 6 años y 13 plazas cada uno, en colaboración con la Facultad de Empresa, Finanzas y Turismo.</p>
+            <p><a href="https://feet.unex.es">Información en feet.unex.es</a></p>
+          </div>
+        </div>
+      </section>
 
-        // ===== MODAL FUNCTIONS =====
-        function openModal(id) {
-            const data = modalData[id];
-            if (!data) return;
+      <!-- Why EPCC -->
+      <section class="section" id="por-que" aria-labelledby="por-que-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">02 · Ventajas</p>
+            <h2 id="por-que-title">Por qué estudiar en la EPCC</h2>
+            <p class="lead">Formación con enfoque práctico, proyección internacional y una preparación técnica sólida para tu carrera profesional.</p>
+          </div>
+          <ul class="features">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v11H3zM8 8V5h8v3M3 13h18"/></svg>
+              <h3>Alta empleabilidad</h3>
+              <p>Nuestros titulados son muy demandados en el mercado profesional, con excelentes perspectivas laborales.</p>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+              <h3>Movilidad internacional</h3>
+              <p>Programas Erasmus+ y SICUE para estudiar en universidades europeas y españolas.</p>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 10a1 1 0 0 0 1 1.5h12a1 1 0 0 0 1-1.5L14 9V3M7 15h10"/></svg>
+              <h3>Enfoque práctico</h3>
+              <p>Laboratorios especializados y colaboración con empresas del sector para una formación real.</p>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3zM8.5 12l2.5 2.5 4.5-5"/></svg>
+              <h3>Calidad acreditada</h3>
+              <p>La EPCC cuenta con la acreditación institucional de ANECA como centro, y el grado en Telecomunicación tiene el sello europeo EUR-ACE.</p>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3-5.5 6.5-5.5s6 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3.2 2.5 3.5 5.5"/></svg>
+              <h3>Grupos reducidos</h3>
+              <p>Trato cercano con el profesorado y atención personalizada gracias a grupos de tamaño reducido.</p>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg>
+              <h3>Continuidad académica</h3>
+              <p>Cinco másteres oficiales en la propia EPCC para seguir especializándote: dos habilitantes y cuatro en modalidad semipresencial.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-            let html = `
-                <div style="font-size: 2.5rem; margin-bottom: 16px;">${data.icon}</div>
-                <h2>${data.title}</h2>
-                <p class="modal-subtitle">${data.subtitle}</p>
-                <p class="modal-desc">${data.desc}</p>
-                ${data.options}
-                <h3>&#127919; Competencias clave</h3>
-                <ul>${data.competencias.map(c => `<li>${c}</li>`).join('')}</ul>
-                <h3>&#128218; Materias destacadas</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
-                    ${data.materias.map(m => `<span style="padding: 6px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 50px; font-size: 0.85rem; color: var(--light);">${m}</span>`).join('')}
-                </div>
-                <h3>&#128188; Salidas profesionales</h3>
-                <ul>${data.salidas.map(s => `<li>${s}</li>`).join('')}</ul>
-                <h3>&#127891; Continuidad: Máster</h3>
-                <div class="master-link">${data.master} &#8594;</div>
-            `;
+      <!-- Employability -->
+      <section class="section" id="empleo" aria-labelledby="empleo-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">03 · Futuro profesional</p>
+            <h2 id="empleo-title">Empleabilidad que habla por sí sola</h2>
+            <p class="lead">La ingeniería lidera los rankings de inserción laboral en España: el 92&nbsp;% de los titulados en ingeniería y arquitectura están empleados.</p>
+          </div>
+          <div class="grid grid-4">
+            <article class="card stat">
+              <span class="stat-value">91&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 91%"></span></span>
+              <h3>Informática</h3>
+              <p class="muted">Tasa de empleo a los 4 años de graduarse</p>
+              <ul>
+                <li><strong>120.000+</strong> vacantes tecnológicas sin cubrir en España</li>
+                <li><strong>~37.000&nbsp;€</strong> salario medio anual</li>
+                <li><strong>+15&nbsp;%</strong> contratación anual</li>
+              </ul>
+            </article>
+            <article class="card stat">
+              <span class="stat-value">87&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 87%"></span></span>
+              <h3>Telecomunicación</h3>
+              <p class="muted">Tasa de empleo a los 4 años de graduarse</p>
+              <ul>
+                <li><strong>Top 5</strong> entre las carreras con más empleo (INE)</li>
+                <li><strong>~35.300&nbsp;€</strong> salario medio anual</li>
+              </ul>
+            </article>
+            <article class="card stat">
+              <span class="stat-value">81&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 81%"></span></span>
+              <h3>Ingeniería Civil</h3>
+              <p class="muted">Tasa de empleo a los 4 años de graduarse</p>
+              <ul>
+                <li><strong>700.000</strong> profesionales que necesita el sector de la construcción</li>
+                <li><strong>~34.500&nbsp;€</strong> salario medio anual</li>
+                <li><strong>72&nbsp;%</strong> contratos indefinidos</li>
+              </ul>
+            </article>
+            <article class="card stat">
+              <span class="stat-value">92&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 92%"></span></span>
+              <h3>Edificación</h3>
+              <p class="muted">Tasa de empleo en ingeniería y arquitectura</p>
+              <ul>
+                <li><strong>140.000 M€</strong> de fondos europeos impulsan el sector</li>
+                <li><strong>~45.000&nbsp;€</strong> salario medio anual</li>
+                <li><strong>55&nbsp;%</strong> del sector se jubilará pronto</li>
+              </ul>
+            </article>
+          </div>
+          <p class="muted" style="margin-top: 1rem">Fuente: INE / Fundación BBVA U-Ranking 2025.</p>
+        </div>
+      </section>
 
-            document.getElementById('modalBody').innerHTML = html;
-            document.getElementById('modalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+      <!-- Mobility -->
+      <section class="section" id="movilidad" aria-labelledby="movilidad-title">
+        <div class="wrap split">
+          <div>
+            <p class="eyebrow">04 · Internacional</p>
+            <h2 id="movilidad-title">Estudia en Europa y en España</h2>
+            <p class="lead">Los estudiantes de la EPCC tienen oportunidades de movilidad internacional mediante programas como Erasmus+ y nacionales como SICUE, que permiten realizar parte de sus estudios en otras universidades europeas y españolas.</p>
+          </div>
+          <div class="grid">
+            <div class="callout">
+              <h3>Erasmus+</h3>
+              <p>Estancias de estudio en universidades europeas.</p>
+            </div>
+            <div class="callout">
+              <h3>SICUE</h3>
+              <p>Intercambio con otras universidades españolas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        function closeModal(e) {
-            if (e && e.target !== document.getElementById('modalOverlay') && e.target !== document.querySelector('.modal-close')) return;
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
+      <!-- Masters -->
+      <section class="section" id="masteres" aria-labelledby="masteres-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">05 · Posgrado</p>
+            <h2 id="masteres-title">Cinco másteres oficiales</h2>
+            <p class="lead">Al terminar tu grado, sigue creciendo en la propia EPCC. Cuatro de los cinco másteres son semipresenciales, compatibles con el trabajo. Cada máster se presenta junto al grado del que parte.</p>
+          </div>
+          <div class="grid grid-3">
+            <article class="card master">
+              <ul class="badges"><li>90 ECTS</li><li class="mode">Semipresencial</li></ul>
+              <h3>Máster Universitario en Ingeniería Informática</h3>
+              <p>Especialización avanzada en informática con acceso a la investigación y a puestos directivos en tecnología.</p>
+              <p><a href="informatica.html#master">Desde Ingeniería Informática</a></p>
+            </article>
+            <article class="card master">
+              <ul class="badges"><li>90 ECTS</li><li>Habilitante</li><li class="mode">Semipresencial</li></ul>
+              <h3>Máster Universitario en Ingeniería de Telecomunicación</h3>
+              <p>Formación avanzada para liderar proyectos de telecomunicaciones. Habilita para la profesión regulada de Ingeniero de Telecomunicación.</p>
+              <p><a href="teleco.html#master">Desde Telecomunicación</a></p>
+            </article>
+            <article class="card master">
+              <ul class="badges"><li>120 ECTS</li><li>Habilitante</li><li>Presencial</li></ul>
+              <h3>Máster Universitario en Ingeniería de Caminos, Canales y Puertos</h3>
+              <p>La titulación histórica de la ingeniería civil, con las mayores atribuciones profesionales.</p>
+              <p><a href="civil.html#master">Desde Ingeniería Civil</a></p>
+            </article>
+            <article class="card master">
+              <ul class="badges"><li>60 ECTS</li><li class="mode">Semipresencial</li></ul>
+              <h3>Máster Universitario en Metodología BIM</h3>
+              <p>Modelización de la información de la construcción (BIM), la tecnología que lidera el sector.</p>
+              <p><a href="edificacion.html#master">Desde Edificación</a> · <a href="civil.html#master">Desde Ingeniería Civil</a></p>
+            </article>
+            <article class="card master">
+              <ul class="badges"><li>60 ECTS</li><li class="mode">Semipresencial</li></ul>
+              <h3>Máster Universitario en Investigación en Ingeniería y Arquitectura</h3>
+              <p>Orientado a iniciarse en la investigación en los ámbitos de la ingeniería y la arquitectura.</p>
+              <p><a href="edificacion.html#master">Ver en Edificación</a></p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
+      <!-- Admissions and contact -->
+      <section class="section" id="contacto" aria-labelledby="contacto-title">
+        <div class="wrap contact">
+          <div>
+            <p class="eyebrow">06 · Admisión y contacto</p>
+            <h2 id="contacto-title">Tu futuro empieza aquí</h2>
+            <p class="lead">Resolvemos cualquier duda sobre nuestros grados, la admisión o la vida universitaria en la EPCC.</p>
+            <ul class="contact-list">
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg><a href="mailto:secretaria_epcc@unex.es">secretaria_epcc@unex.es</a></li>
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg><a href="tel:+34927257195">927 257 195</a></li>
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><address>Avda. Universidad s/n, 10003 Cáceres</address></li>
+            </ul>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://alumnado.unex.es">
+                Preinscripción y acceso
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+              </a>
+              <a class="btn" href="https://epcc.unex.es">
+                Web oficial de la EPCC
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+              </a>
+            </div>
+          </div>
+          <figure style="margin: 0">
+            <img class="qr" src="assets/img/qr-epcc.png" width="160" height="160" alt="Código QR de acceso a esta web">
+            <figcaption class="muted" style="margin-top: 0.5rem">Comparte esta web con el código QR.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
 
-        // ===== SMOOTH SCROLL =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-brand">
+              <img class="logo-light" src="assets/img/logo-epcc-color.png" width="48" height="42" alt="">
+              <img class="logo-dark" src="assets/img/logo-epcc-white.png" width="48" height="42" alt="">
+              Escuela Politécnica de Cáceres
+            </p>
+            <address>
+              Universidad de Extremadura<br>
+              Avda. Universidad s/n, 10003 Cáceres<br>
+              <a href="tel:+34927257195">927 257 195</a> · <a href="mailto:secretaria_epcc@unex.es">secretaria_epcc@unex.es</a>
+            </address>
+          </div>
+          <nav aria-label="Grados">
+            <h2>Grados</h2>
+            <ul>
+              <li><a href="informatica.html">Ingeniería Informática</a></li>
+              <li><a href="teleco.html">Tecnologías de Telecomunicación</a></li>
+              <li><a href="civil.html">Ingeniería Civil</a></li>
+              <li><a href="edificacion.html">Edificación</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Enlaces oficiales y redes">
+            <h2>Enlaces</h2>
+            <ul>
+              <li><a href="https://epcc.unex.es">epcc.unex.es</a></li>
+              <li><a href="https://alumnado.unex.es">Acceso y preinscripción</a></li>
+              <li><a href="https://www.instagram.com/epcc_unex/">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/school/epcc-unex/">LinkedIn</a></li>
+              <li><a href="https://twitter.com/epcc_unex">X (Twitter)</a></li>
+              <li><a href="https://www.facebook.com/epcc.unex/">Facebook</a></li>
+            </ul>
+          </nav>
+        </div>
+        <p class="footer-bottom">Centro con acreditación institucional de ANECA. © 2026 Escuela Politécnica de Cáceres · Universidad de Extremadura</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
