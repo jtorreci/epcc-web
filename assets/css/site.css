@@ -15,6 +15,7 @@
   --grid-minor: rgba(236, 232, 223, 0.055);
   --grid-major: rgba(236, 232, 223, 0.11);
   --art: rgba(236, 232, 223, 0.4);
+  --veil: rgba(30, 31, 34, 0.74);
   --panel: rgba(38, 40, 44, 0.84);
   --accent: #f0b90b;
   --accent-soft: rgba(240, 185, 11, 0.16);
@@ -44,6 +45,7 @@
   --grid-minor: rgba(20, 33, 61, 0.045);
   --grid-major: rgba(20, 33, 61, 0.09);
   --art: rgba(20, 33, 61, 0.32);
+  --veil: rgba(244, 241, 234, 0.78);
   --panel: rgba(251, 250, 246, 0.86);
   --accent: #e3ae00;
   --accent-soft: rgba(227, 174, 0, 0.18);
@@ -218,6 +220,25 @@ body { position: relative; }
 @media (min-width: 720px) { :root { --gutter: 32px; } }
 
 .section { padding: 4.5rem 0; border-top: 1px solid var(--rule); }
+
+/* Soft paper veil behind section content: dims drawings under text while
+   the gaps between sections keep them at full strength. */
+.section > .wrap { position: relative; isolation: isolate; }
+.section > .wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 2rem;
+  background: var(--veil);
+  box-shadow: 0 0 3rem 2rem var(--veil);
+}
+
+/* Paper halo around glyphs for lines that still cross text. */
+.page :is(h1, h2, h3, p, li, dt, dd) {
+  text-shadow: 0 0 0.35rem var(--paper), 0 0 0.15rem var(--paper);
+}
 
 .section-head { max-width: var(--measure); margin-bottom: 2.5rem; }
 
