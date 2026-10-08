@@ -4,6 +4,35 @@
    ========================================================================== */
 
 :root {
+  /* Default theme: charcoal drafting paper with light technical lines */
+  --paper: #1e1f22;
+  --surface: #26282c;
+  --ink: #ece8df;
+  --ink-2: #c6c1b7;
+  --ink-3: #9d988e;
+  --rule: rgba(236, 232, 223, 0.14);
+  --rule-strong: rgba(236, 232, 223, 0.36);
+  --grid-minor: rgba(236, 232, 223, 0.055);
+  --grid-major: rgba(236, 232, 223, 0.11);
+  --art: rgba(236, 232, 223, 0.3);
+  --accent: #f0b90b;
+  --accent-soft: rgba(240, 185, 11, 0.16);
+  --focus: #8ab4ff;
+
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --gutter: 16px;
+  --max: 72rem;
+  --measure: 40rem;
+  --radius: 2px;
+
+  color-scheme: dark;
+}
+
+/* Alternative theme: light drafting paper (opt-in via ?tema=claro) */
+:root[data-theme="light"] {
   --paper: #f4f1ea;
   --surface: #fbfaf6;
   --ink: #14213d;
@@ -17,36 +46,7 @@
   --accent: #e3ae00;
   --accent-soft: rgba(227, 174, 0, 0.18);
   --focus: #1d4ed8;
-
-  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-
-  --gutter: 16px;
-  --max: 72rem;
-  --measure: 40rem;
-  --radius: 2px;
-
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #0d1626;
-    --surface: #132036;
-    --ink: #e8ecf3;
-    --ink-2: #bcc6d6;
-    --ink-3: #96a2b8;
-    --rule: rgba(232, 236, 243, 0.16);
-    --rule-strong: rgba(232, 236, 243, 0.4);
-    --grid-minor: rgba(160, 190, 235, 0.05);
-    --grid-major: rgba(160, 190, 235, 0.1);
-    --art: rgba(170, 196, 236, 0.26);
-    --accent: #f2c230;
-    --accent-soft: rgba(242, 194, 48, 0.16);
-    --focus: #8ab4ff;
-    color-scheme: dark;
-  }
 }
 
 /* ---------- Base ---------- */
@@ -622,11 +622,9 @@ details > div > :last-child { margin-bottom: 0; }
 .footer-bottom { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-3); font-size: 0.8125rem; }
 
 /* Theme-dependent logo */
-.logo-dark { display: none; }
-@media (prefers-color-scheme: dark) {
-  .logo-light { display: none; }
-  .logo-dark { display: block; }
-}
+.logo-light { display: none; }
+:root[data-theme="light"] .logo-light { display: block; }
+:root[data-theme="light"] .logo-dark { display: none; }
 
 /* ---------- Motion preferences ---------- */
 

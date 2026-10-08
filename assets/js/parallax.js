@@ -4,6 +4,7 @@
 (function () {
   'use strict';
   var root = document.documentElement;
+  if (/[?&]tema=claro\b/.test(location.search)) root.setAttribute('data-theme', 'light');
   var native = window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (native || reduce) return;
