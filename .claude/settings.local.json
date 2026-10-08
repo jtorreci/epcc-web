@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(gh auth:*)",
+      "Bash(cd \"C:/Users/Usuario/Dropbox/Universidad/Gestión/Escuela/Tripticos\" && gh repo create epcc-web --public --description \"Portal web de la Escuela Politécnica de Cáceres - Universidad de Extremadura\" --source . --push 2>&1)",
+      "Bash(cd \"C:/Users/Usuario/Dropbox/Universidad/Gestión/Escuela/Tripticos\" && gh api repos/jtorreci/epcc-web/pages -X POST -f \"build_type=workflow\" 2>&1 || gh api repos/jtorreci/epcc-web/pages -X POST --input - 2>&1 <<'EOF'\n{\"source\":{\"branch\":\"master\",\"path\":\"/\"}}\nEOF)",
+      "Bash(cd \"C:/Users/Usuario/Dropbox/Universidad/Gestión/Escuela/Tripticos\" && gh run list --limit 1 2>&1)",
+      "Bash(cd \"C:/Users/Usuario/Dropbox/Universidad/Gestión/Escuela/Tripticos\" && gh run watch 22396580420 2>&1)",
+      "Bash(cd \"C:/Users/Usuario/Dropbox/Universidad/Gestión/Escuela/Tripticos\" && gh run watch 22398845628 2>&1)",
+      "Bash(/c/Python313/python:*)",
+      "WebSearch",
+      "WebFetch(domain:www.fundacioncyd.org)",
+      "WebFetch(domain:www.xataka.com)",
+      "WebFetch(domain:esi.uclm.es)",
+      "WebFetch(domain:keepcoding.io)",
+      "WebFetch(domain:iberoeconomia.es)",
+      "WebFetch(domain:www.digitales.es)",
+      "WebFetch(domain:www.aprendemas.com)",
+      "WebFetch(domain:www.fbbva.es)",
+      "WebFetch(domain:recursos-humanos.infojobs.net)"
+    ]
+  }
+}
