@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
   <link rel="stylesheet" href="assets/css/site.css">
   <script src="assets/js/parallax.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
 </head>
 <body>
   <svg class="sprite" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -181,17 +182,6 @@
 
   <div class="layers" aria-hidden="true">
     <div class="layer layer-grid"></div>
-    <div class="layer layer-photos">
-      <div class="photo-bg photo-hero">
-        <img src="assets/img/photos/civil.jpg" alt="" loading="eager" fetchpriority="high">
-      </div>
-      <div class="photo-bg photo-empleo">
-        <img src="assets/img/bg-empleo.svg" alt="" loading="lazy">
-      </div>
-      <div class="photo-bg photo-movilidad">
-        <img src="assets/img/bg-movilidad.svg" alt="" loading="lazy">
-      </div>
-    </div>
     <div class="layer layer-art">
       <svg class="scene" style="--i: 0" viewBox="0 0 800 600"><use href="#bridge"/></svg>
       <svg class="scene" style="--i: 1" viewBox="0 0 800 600"><use href="#dam"/></svg>
@@ -240,6 +230,9 @@
 
     <main id="contenido">
       <section class="hero" aria-labelledby="hero-title">
+        <div class="photo-bg photo-left">
+          <img src="assets/img/photos/civil-01.jpg" alt="" loading="eager" fetchpriority="high">
+        </div>
         <div class="wrap">
           <p class="eyebrow">Grado · Profesión regulada</p>
           <h1 id="hero-title">Grado en Ingeniería Civil</h1>
@@ -258,6 +251,9 @@
       </section>
 
       <section class="section" id="por-que" aria-labelledby="por-que-title">
+        <div class="photo-bg photo-right">
+          <img src="assets/img/photos/civil-02.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">01 · Por qué este grado</p>
@@ -285,6 +281,9 @@
       </section>
 
       <section class="section" id="menciones" aria-labelledby="menciones-title">
+        <div class="photo-bg photo-left">
+          <img src="assets/img/photos/civil-03.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">02 · Menciones</p>
@@ -313,6 +312,9 @@
       </section>
 
       <section class="section" id="materias" aria-labelledby="materias-title">
+        <div class="photo-bg photo-right">
+          <img src="assets/img/photos/civil-04.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap split">
           <div>
             <p class="eyebrow">03 · Materias</p>
@@ -344,6 +346,9 @@
       </section>
 
       <section class="section" id="salidas" aria-labelledby="salidas-title">
+        <div class="photo-bg photo-left">
+          <img src="assets/img/photos/civil-05.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap split">
           <div>
             <p class="eyebrow">05 · Salidas profesionales</p>
@@ -373,6 +378,9 @@
       </section>
 
       <section class="section" id="movilidad" aria-labelledby="movilidad-title">
+        <div class="photo-bg photo-right">
+          <img src="assets/img/photos/civil-06.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="callout">
             <p class="eyebrow">06 · Movilidad</p>
@@ -383,6 +391,9 @@
       </section>
 
       <section class="section" id="master" aria-labelledby="master-title">
+        <div class="photo-bg photo-left">
+          <img src="assets/img/photos/civil-07.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">07 · Posgrado</p>
@@ -435,6 +446,34 @@
             <li><a href="teleco.html">Tecnologías de Telecomunicación<small>2 menciones · 60 plazas</small></a></li>
             <li><a href="edificacion.html">Edificación<small>Arquitecto Técnico · 40 plazas</small></a></li>
           </ul>
+        </div>
+      </section>
+      <section class="gallery" aria-label="Galería de fotos">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">08 · Galería</p>
+            <h2>Ingeniería Civil en imágenes</h2>
+            <p class="lead">Obras, puentes, presas y proyectos.</p>
+          </div>
+          <div class="gallery-track" role="region" aria-label="Carrusel de imágenes" aria-roledescription="carousel">
+            <img src="assets/img/photos/variants/civil-01-rot180.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-01-mirror.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-02-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-02-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-03-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-03-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-04-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-04-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-05-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-05-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-06-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-06-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-07-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/civil-07-light.jpg" alt="" loading="lazy">
+          </div>
+          <button class="gallery-btn gallery-btn-prev" type="button" aria-label="Foto anterior">‹</button>
+          <button class="gallery-btn gallery-btn-next" type="button" aria-label="Foto siguiente">›</button>
+          <ol class="gallery-dots" role="tablist" aria-label="Ir a foto"></ol>
         </div>
       </section>
     </main>
