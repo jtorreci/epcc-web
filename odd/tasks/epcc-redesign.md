@@ -38,7 +38,7 @@ ask-on-risk. Forecast: ~1500+ authored lines (generated static pages) — chain 
   - Client correction: modality — MU Ing. Informática, MU Ing. Telecomunicación, MU BIM and MU Investigación en Ingeniería y Arquitectura (MUI) are SEMIPRESENCIAL (highlighted badge); MU Ing. Caminos, Canales y Puertos is presencial (plain label).
   - Contact: Avda. Universidad s/n, 10003 Cáceres; 927 257 195; secretaria_epcc@unex.es
 - [x] T2 Design system + shared assets (`assets/css/site.css`, line-art SVGs, parallax) — route: delegated writer (2+ non-trivial files) — commit ff58ef7
-- [ ] T3 Portal `index.html` rewrite — route: delegated writer
+- [x] T3 Portal `index.html` rewrite — route: delegated writer — commit 2d035fa
 - [ ] T4 Degree pages (4) with masters — route: delegated writer
 - [ ] T5 Structural verification (links, accents, reduced-motion, mobile width) — route: delegated verifier
 
