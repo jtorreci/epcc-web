@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
   <link rel="stylesheet" href="assets/css/site.css">
   <script src="assets/js/parallax.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
 </head>
 <body>
   <svg class="sprite" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -181,17 +182,6 @@
 
   <div class="layers" aria-hidden="true">
     <div class="layer layer-grid"></div>
-    <div class="layer layer-photos">
-      <div class="photo-bg photo-hero">
-        <img src="assets/img/bg-hero.svg" alt="" loading="eager" fetchpriority="high">
-      </div>
-      <div class="photo-bg photo-empleo">
-        <img src="assets/img/bg-empleo.svg" alt="" loading="lazy">
-      </div>
-      <div class="photo-bg photo-movilidad">
-        <img src="assets/img/bg-movilidad.svg" alt="" loading="lazy">
-      </div>
-    </div>
     <div class="layer layer-art">
       <svg class="scene" style="--i: 0" viewBox="0 0 800 600"><use href="#bridge"/></svg>
       <svg class="scene" style="--i: 1" viewBox="0 0 800 600"><use href="#circuit"/></svg>
@@ -227,6 +217,9 @@
     <main id="contenido">
       <!-- Hero -->
       <section class="hero" aria-labelledby="hero-title">
+        <div class="photo-bg photo-left">
+          <img src="assets/img/photos/teleco-01.jpg" alt="" loading="eager" fetchpriority="high">
+        </div>
         <div class="wrap">
           <p class="hero-badge">Haz la PAU y preinscríbete</p>
           <p class="eyebrow">Escuela Politécnica de Cáceres</p>
@@ -254,6 +247,9 @@
 
       <!-- Degrees -->
       <section class="section" id="grados" aria-labelledby="grados-title">
+        <div class="photo-bg photo-right">
+          <img src="assets/img/photos/teleco-02.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">01 · Oferta académica</p>
@@ -306,6 +302,9 @@
 
       <!-- Why EPCC -->
       <section class="section" id="por-que" aria-labelledby="por-que-title">
+        <div class="photo-bg photo-left">
+          <img src="assets/img/photos/teleco-03.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">02 · Ventajas</p>
@@ -349,6 +348,9 @@
 
       <!-- Employability -->
       <section class="section" id="empleo" aria-labelledby="empleo-title">
+        <div class="photo-bg photo-right">
+          <img src="assets/img/photos/teleco-04.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">03 · Futuro profesional</p>
@@ -408,6 +410,9 @@
 
       <!-- Mobility -->
       <section class="section" id="movilidad" aria-labelledby="movilidad-title">
+        <div class="photo-bg photo-left">
+          <img src="assets/img/photos/teleco-05.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap split">
           <div>
             <p class="eyebrow">04 · Internacional</p>
@@ -429,6 +434,9 @@
 
       <!-- Masters -->
       <section class="section" id="masteres" aria-labelledby="masteres-title">
+        <div class="photo-bg photo-right">
+          <img src="assets/img/photos/teleco-06.jpg" alt="" loading="lazy">
+        </div>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">05 · Posgrado</p>
@@ -497,6 +505,36 @@
             <img class="qr" src="assets/img/qr-epcc.png" width="160" height="160" alt="Código QR de acceso a esta web">
             <figcaption class="muted" style="margin-top: 0.5rem">Comparte esta web con el código QR.</figcaption>
           </figure>
+        </div>
+      </section>
+
+      <!-- Photo gallery: variants of the section photos that did not
+           get used as a section background. Pure decoration, sits at
+           the end so it does not interrupt the reading flow. -->
+      <section class="gallery" aria-label="Galería de fotos">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">07 · Galería</p>
+            <h2>Un vistazo a la escuela</h2>
+            <p class="lead">Aulas, laboratorios, obras y campus.</p>
+          </div>
+          <div class="gallery-track" role="region" aria-label="Carrusel de imágenes" aria-roledescription="carousel">
+            <img src="assets/img/photos/variants/teleco-01-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-01-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-02-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-02-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-03-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-03-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-04-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-04-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-05-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-05-light.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-06-dark.jpg" alt="" loading="lazy">
+            <img src="assets/img/photos/variants/teleco-06-light.jpg" alt="" loading="lazy">
+          </div>
+          <button class="gallery-btn gallery-btn-prev" type="button" aria-label="Foto anterior">‹</button>
+          <button class="gallery-btn gallery-btn-next" type="button" aria-label="Foto siguiente">›</button>
+          <ol class="gallery-dots" role="tablist" aria-label="Ir a foto"></ol>
         </div>
       </section>
     </main>
