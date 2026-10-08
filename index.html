@@ -183,13 +183,13 @@
     <div class="layer layer-grid"></div>
     <div class="layer layer-photos">
       <div class="photo-bg photo-hero">
-        <img src="assets/img/hero-bg.jpg" alt="" loading="lazy">
+        <img src="assets/img/bg-hero.svg" alt="" loading="eager" fetchpriority="high">
       </div>
       <div class="photo-bg photo-empleo">
-        <img src="assets/img/empleo-bg.jpg" alt="" loading="lazy">
+        <img src="assets/img/bg-empleo.svg" alt="" loading="lazy">
       </div>
       <div class="photo-bg photo-movilidad">
-        <img src="assets/img/movilidad-bg.jpg" alt="" loading="lazy">
+        <img src="assets/img/bg-movilidad.svg" alt="" loading="lazy">
       </div>
     </div>
     <div class="layer layer-art">
@@ -213,11 +213,11 @@
         </a>
         <nav class="nav" aria-label="Principal">
           <ul>
+            <li><a href="#contenido">Inicio</a></li>
             <li><a href="#grados">Grados</a></li>
+            <li><a href="#masteres">Másteres</a></li>
             <li><a href="#por-que">Por qué EPCC</a></li>
             <li><a href="#empleo">Empleo</a></li>
-            <li><a href="#movilidad">Movilidad</a></li>
-            <li><a href="#masteres">Másteres</a></li>
             <li><a href="#contacto">Contacto</a></li>
           </ul>
         </nav>
@@ -298,8 +298,8 @@
 
           <div class="callout" style="margin-top: 1.5rem">
             <h3>Dobles grados ADE + Ingeniería Informática</h3>
-            <p>Además, se ofertan dos dobles grados que combinan Administración y Dirección de Empresas con Ingeniería Informática: 6 años y 13 plazas cada uno, en colaboración con la Facultad de Empresa, Finanzas y Turismo.</p>
-            <p><a href="https://feet.unex.es">Información en feet.unex.es</a></p>
+            <p>Los dobles grados ADE + Ingeniería Informática <strong>no se ofertan para nuevo ingreso este curso</strong>; los estudiantes actualmente matriculados continúan su plan en la Facultad de Empresa, Finanzas y Turismo.</p>
+            <p><a href="https://feet.unex.es">Más información en feet.unex.es</a></p>
           </div>
         </div>
       </section>
@@ -353,54 +353,56 @@
           <div class="section-head">
             <p class="eyebrow">03 · Futuro profesional</p>
             <h2 id="empleo-title">Empleabilidad que habla por sí sola</h2>
-            <p class="lead">La ingeniería lidera los rankings de inserción laboral en España: el 92&nbsp;% de los titulados en ingeniería y arquitectura están empleados.</p>
+            <p class="lead">La empleabilidad medida por afiliación a la Seguridad Social supera el 80&nbsp;% en las cuatro titulaciones, según la última cohorte publicada por el Ministerio.</p>
           </div>
           <div class="grid grid-4">
             <article class="card stat">
-              <span class="stat-value">91&nbsp;%</span>
-              <span class="stat-bar" aria-hidden="true"><span style="width: 91%"></span></span>
+              <span class="stat-value">89,4&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 89%"></span></span>
               <h3>Informática</h3>
-              <p class="muted">Tasa de empleo a los 4 años de graduarse</p>
+              <p class="muted">Afiliación a los 4 años (rama Ingeniería y Arquitectura)</p>
               <ul>
-                <li><strong>120.000+</strong> vacantes tecnológicas sin cubrir en España</li>
-                <li><strong>~37.000&nbsp;€</strong> salario medio anual</li>
-                <li><strong>+15&nbsp;%</strong> contratación anual</li>
+                <li><strong>87,7&nbsp;%</strong> afiliación específica del título (CYD 2025)</li>
+                <li><strong>34.200&nbsp;€</strong> salario medio anual (CYD 2025)</li>
+                <li><strong>62,8&nbsp;%</strong> de las empresas la sitúa entre las tres carreras con mayor empleabilidad (CEU-Adecco 2026)</li>
               </ul>
             </article>
             <article class="card stat">
-              <span class="stat-value">87&nbsp;%</span>
-              <span class="stat-bar" aria-hidden="true"><span style="width: 87%"></span></span>
+              <span class="stat-value">89,4&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 89%"></span></span>
               <h3>Telecomunicación</h3>
-              <p class="muted">Tasa de empleo a los 4 años de graduarse</p>
+              <p class="muted">Afiliación a los 4 años (rama Ingeniería y Arquitectura)</p>
               <ul>
-                <li><strong>Top 5</strong> entre las carreras con más empleo (INE)</li>
-                <li><strong>~35.300&nbsp;€</strong> salario medio anual</li>
+                <li><strong>96,9&nbsp;%</strong> con jornada completa (SIIU 2019-20)</li>
+                <li><strong>93,8&nbsp;%</strong> con contrato indefinido (SIIU 2019-20)</li>
+                <li><strong>51,1&nbsp;%</strong> de las empresas la demanda activamente (CEU-Adecco 2026)</li>
               </ul>
             </article>
             <article class="card stat">
-              <span class="stat-value">81&nbsp;%</span>
-              <span class="stat-bar" aria-hidden="true"><span style="width: 81%"></span></span>
+              <span class="stat-value">82,8&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 83%"></span></span>
               <h3>Ingeniería Civil</h3>
-              <p class="muted">Tasa de empleo a los 4 años de graduarse</p>
+              <p class="muted">Afiliación a los 4 años (rama Ingeniería, Industria y Construcción)</p>
               <ul>
-                <li><strong>700.000</strong> profesionales que necesita el sector de la construcción</li>
-                <li><strong>~34.500&nbsp;€</strong> salario medio anual</li>
-                <li><strong>72&nbsp;%</strong> contratos indefinidos</li>
+                <li><strong>83,4&nbsp;%</strong> afiliación específica del título (CYD 2025)</li>
+                <li><strong>30.370&nbsp;€</strong> salario medio anual (CYD 2025)</li>
+                <li><strong>90,5&nbsp;%</strong> con contrato indefinido · <strong>95,6&nbsp;%</strong> jornada completa (SIIU 2019-20)</li>
               </ul>
             </article>
             <article class="card stat">
-              <span class="stat-value">92&nbsp;%</span>
-              <span class="stat-bar" aria-hidden="true"><span style="width: 92%"></span></span>
+              <span class="stat-value">82,8&nbsp;%</span>
+              <span class="stat-bar" aria-hidden="true"><span style="width: 83%"></span></span>
               <h3>Edificación</h3>
-              <p class="muted">Tasa de empleo en ingeniería y arquitectura</p>
+              <p class="muted">Afiliación a los 4 años (rama Ingeniería, Industria y Construcción)</p>
               <ul>
-                <li><strong>140.000 M€</strong> de fondos europeos impulsan el sector</li>
-                <li><strong>~45.000&nbsp;€</strong> salario medio anual</li>
-                <li><strong>55&nbsp;%</strong> del sector se jubilará pronto</li>
+                <li><strong>96,7&nbsp;%</strong> contratos indefinidos en Arquitectura Técnica (CYD 2025)</li>
+                <li><strong>95,6&nbsp;%</strong> jornada completa (SIIU 2019-20)</li>
+                <li><strong>58,3&nbsp;%</strong> con base de cotización superior a 30.000&nbsp;€ (SIIU 2019-20)</li>
               </ul>
             </article>
           </div>
-          <p class="muted" style="margin-top: 1rem">Fuente: INE / Fundación BBVA U-Ranking 2025.</p>
+          <p class="muted" style="margin-top: 1rem">Datos SIIU (cohorte 2019-20, publicado marzo 2026), Fundación CYD 2025, CEU-Adecco 2026 e Infoempleo-Adecco 2024. Actualización anual en cada curso.</p>
+          <p class="muted" style="margin-top: 0.5rem">Cifras oficiales de afiliación a la Seguridad Social, no de ofertas. El 76,66&nbsp;% de las ofertas para universitarios no especifica titulación (Infoempleo-Adecco 2024).</p>
         </div>
       </section>
 
