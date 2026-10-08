@@ -186,8 +186,7 @@ body { position: relative; }
   position: absolute;
   width: min(70vw, 1200px);
   height: auto;
-  filter: blur(30px) brightness(0.4);
-  opacity: 0.6;
+  opacity: 0.3;
   border-radius: 40px;
   overflow: hidden;
 }
