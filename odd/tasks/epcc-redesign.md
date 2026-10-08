@@ -40,10 +40,10 @@ ask-on-risk. Forecast: ~1500+ authored lines (generated static pages) — chain 
 - [x] T2 Design system + shared assets (`assets/css/site.css`, line-art SVGs, parallax) — route: delegated writer (2+ non-trivial files) — commit ff58ef7
 - [x] T3 Portal `index.html` rewrite — route: delegated writer — commit 2d035fa
 - [x] T4 Degree pages (4) with masters — route: delegated writer — commit f9bab87
-- [ ] T5 Structural verification (links, accents, reduced-motion, mobile width) — route: delegated verifier
+- [x] T5 Structural verification (links, accents, reduced-motion, mobile width) — route: delegated verifier — verified (re-run with T8: 0 missing links, no overflow at 360/390/1280)
 
 - [x] T7 Charcoal drafting theme as default (light via ?tema=claro) — route: inline (token-only CSS change) — 3b8ae13
-- [ ] T8 Rework parallax into perceptible triple scroll with intermediate line-art between sections — route: delegated writer (CSS + JS + 5 pages)
+- [x] T8 Rework parallax into perceptible triple scroll with intermediate line-art between sections — route: delegated writer (CSS + JS + 5 pages) — commit c57f914
   - Reason (client feedback 2026-10-08): "no hay triple scroll ni imágenes intermedias". Root cause: grid drifts 12vh and art 20vh over whole page (perceived as fixed); single fixed drawing crossfades behind content; CSS-only path (Chromium) — Firefox uses untested fallback; prefers-reduced-motion disables everything.
 
 ## Acceptance criteria
@@ -57,5 +57,7 @@ ask-on-risk. Forecast: ~1500+ authored lines (generated static pages) — chain 
 - Writer verification: link checker (5 pages, 149 local refs, 0 missing); stale-term grep clean (EUR-ACE only on teleco + portal; `modal` only matches `modalidad`); emoji grep clean; CDP screenshots at 360/390/1280 show no horizontal overflow and native scroll-timeline scene crossfades.
 - Inform/Teleco 'materias' shown as general 'Áreas de formación' (no per-mención subject lists; none verified).
 
+- T8 evidence: single JS mechanism (scroll + rAF -> --gy grid 0.2x wrapped per 120px cell, --ay art layer net 0.5x, per-drawing --p/--o); drawings anchored at hero + each section gap (7 on portal, 9 per degree page, own-field motifs first). CDP Chromium shots index/civil at 1280x900 and 390x844 (fractions 0-0.75) show distinct drawings between sections with grid/art offsets differing; Firefox 144 (Playwright build) mid-scroll civil matches Chromium values; reduced-motion shot static and fully drawn; scrollWidth == innerWidth on all 5 pages at 360/390/1280; link check 175 local refs, 0 missing.
+
 ## Next step
-T5 independent structural verification.
+Client review of the three-plane parallax.
