@@ -172,6 +172,48 @@ body { position: relative; }
   inset: 0;
   transform: translate3d(0, calc(var(--ay, 0) * 1px), 0);
   will-change: transform;
+  z-index: 2;
+}
+
+.layer-photos {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.photo-bg {
+  position: absolute;
+  width: min(70vw, 1200px);
+  height: auto;
+  filter: blur(30px) brightness(0.4);
+  opacity: 0.6;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.photo-bg img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-hero {
+  top: 10vh;
+  right: -10vw;
+  transform: translate3d(0, calc(var(--ay, 0) * 0.3px), 0);
+}
+
+.photo-empleo {
+  top: calc(3 * 120vh + 10vh);
+  left: -10vw;
+  transform: translate3d(0, calc(var(--ay, 0) * 0.3px), 0);
+}
+
+.photo-movilidad {
+  top: calc(4 * 120vh + 10vh);
+  right: -10vw;
+  transform: translate3d(0, calc(var(--ay, 0) * 0.3px), 0);
 }
 
 .scene {
@@ -181,7 +223,7 @@ body { position: relative; }
   width: min(66vw, 1100px);
   max-width: none;
   height: auto;
-  color: var(--art);
+  color: #4fc3f7;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.5;
@@ -190,6 +232,7 @@ body { position: relative; }
   stroke-dasharray: 1;
   stroke-dashoffset: var(--p, 0);
   opacity: var(--o, 1);
+  filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.6));
 }
 
 .scene:nth-child(even) { right: auto; left: -8vw; }
