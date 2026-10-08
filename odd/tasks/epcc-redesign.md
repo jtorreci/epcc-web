@@ -39,7 +39,7 @@ ask-on-risk. Forecast: ~1500+ authored lines (generated static pages) — chain 
   - Contact: Avda. Universidad s/n, 10003 Cáceres; 927 257 195; secretaria_epcc@unex.es
 - [x] T2 Design system + shared assets (`assets/css/site.css`, line-art SVGs, parallax) — route: delegated writer (2+ non-trivial files) — commit ff58ef7
 - [x] T3 Portal `index.html` rewrite — route: delegated writer — commit 2d035fa
-- [ ] T4 Degree pages (4) with masters — route: delegated writer
+- [x] T4 Degree pages (4) with masters — route: delegated writer — commit f9bab87
 - [ ] T5 Structural verification (links, accents, reduced-motion, mobile width) — route: delegated verifier
 
 ## Acceptance criteria
@@ -50,5 +50,8 @@ ask-on-risk. Forecast: ~1500+ authored lines (generated static pages) — chain 
 ## Progress / Evidence
 - Normalized CRLF-only diff on index.html (`git checkout -- index.html`); branch `feat/redesign-parallax-degree-pages`.
 
+- Writer verification: link checker (5 pages, 149 local refs, 0 missing); stale-term grep clean (EUR-ACE only on teleco + portal; `modal` only matches `modalidad`); emoji grep clean; CDP screenshots at 360/390/1280 show no horizontal overflow and native scroll-timeline scene crossfades.
+- Inform/Teleco 'materias' shown as general 'Áreas de formación' (no per-mención subject lists; none verified).
+
 ## Next step
-T1 research in progress.
+T5 independent structural verification.
